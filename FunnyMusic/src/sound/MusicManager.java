@@ -56,6 +56,7 @@ public class MusicManager{
 			files[i]="./music/"+(i+1)+".mp3";
 		}
 		manager= new MusicManager(files);
+		manager.setLoopMode(LoopMode.SINGLE);
 		manager.Play();
 		
 		
@@ -116,14 +117,8 @@ public class MusicManager{
 			player.Stop();
 			break;
 		case SINGLE:
-			if(player.isPlaying()) {
-				player.Stop();
-				System.out.println("last player has been stopped.");
-			}
-			player=null;
-			player = new MP3Player(current.getAbsolutePath(), new Mycb(this));
-			player.Start();
-			System.out.println("new player has been started.");
+			System.out.println("file : "+current.getName()+" index "+index);
+			Change(current);
 			break;
 		case LIST:
 		case NONLOOP_LIST:
@@ -202,7 +197,7 @@ public class MusicManager{
 	
 	public void Exit() {
 		for(Player p:history) {
-			p.Pause();
+//			p.Pause();
 			p.Stop();
 			p.Release();
 		}
