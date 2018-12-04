@@ -126,8 +126,9 @@ public class MP3Player extends Thread implements sound.Player {
 
 	@Override
 	public void Pause() {
-		isplaying=false;
+		if(this.isplaying)
 		this.suspend();
+		isplaying=false;
 	}
 
 	@Override
@@ -141,10 +142,21 @@ public class MP3Player extends Thread implements sound.Player {
 //		shouldLoop=false;
 		if(this.isAlive())
 		player.close();
+		player=null;
 		isplaying=false;
 		if(this.isAlive())
 		this.stop();
-		
+	}
+	@Override
+	public void Release() {
+		// TODO Auto-generated method stub
+		try {
+			this.finalize();
+//			System.out.println("finalized.");
+		} catch (Throwable e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 
 }

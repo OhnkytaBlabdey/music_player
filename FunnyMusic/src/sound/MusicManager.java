@@ -1,6 +1,8 @@
 package sound;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Scanner;
 
 
@@ -28,6 +30,7 @@ public class MusicManager{
 	}
 	
 	private sound.Player player;
+	private Collection<Player> history;
 //	private sound.Player last;
 	
 	private File[] musics;
@@ -60,16 +63,23 @@ public class MusicManager{
 		
 		while(i!=0) {
 			if(i<7) {
+				manager.Pause();
 				manager.Change(i-1);
+			}
+			else {
+				manager.Pause();
 			}
 			i=scan.nextInt();
 		}
-		
+		scan.close();
+		manager.Exit();
 		System.out.println("Main end");
 	}
 	
 	public MusicManager(String[] filenames) {
-		mode = LoopMode.NONLOOP_LIST;
+//		mode = LoopMode.NONLOOP_LIST;
+		mode=LoopMode.LIST;
+		history=new ArrayList<Player>();
 //		mode=LoopMode.SINGLE;
 //		cmd=CMD.PLAY;
 		musics=new File[filenames.length];
@@ -137,19 +147,21 @@ public class MusicManager{
 	}
 	
 	public void Change(File f) {
-//		System.out.println("333");
+
 		System.out.println("isplaying : "+player.isPlaying()); //true. ??
-//		player.Pause();
-//		System.out.println("PAUSEed");
-//		
-//		player.Stop();
-//		System.out.println("STOPed");
+//		if(player!=null)
+//		{
+//			player.Stop();
+//			player.Release();
+//		}
+		System.out.println(f.getName()+"\tis going to start.");
 		player=new MP3Player(f.getAbsolutePath(),new CallBacker() {
 			@Override
 			public void callback() {
 				Play();
 			}
 		});
+		history.add(player);
 		player.Start();
 	}
 	
@@ -184,8 +196,16 @@ public class MusicManager{
 	}
 	public void Stop() {
 		player.Stop();
+		player.Release();
 		player=null;
-		
+	}
+	
+	public void Exit() {
+		for(Player p:history) {
+			p.Pause();
+			p.Stop();
+			p.Release();
+		}
 	}
 	
 	public LoopMode getLoopMode() {

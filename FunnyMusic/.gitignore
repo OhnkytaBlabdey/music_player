@@ -3,6 +3,8 @@
 
 /.settings
 /.metadata
+/.classpath
+/.project
 
 #binary
 *.class
