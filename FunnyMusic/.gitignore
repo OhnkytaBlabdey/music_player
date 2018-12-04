@@ -1,0 +1,16 @@
+
+# ide conf
+
+/.settings
+/.metadata
+
+#binary
+*.class
+/bin
+
+# user file
+
+*.mp3
+*.jpg
+*.png
+
