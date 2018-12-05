@@ -18,6 +18,7 @@ public class TitleBar extends JPanel{
 	public static void main(String[] args) {
 		JFrame frame=new JFrame();
 		GlobalVars.frame=frame;
+		MainFrame.init();
 		frame.setLayout(new BorderLayout());
 		frame.setIconImage(new ImageIcon("conf/textures/logo.png").getImage());
 		
