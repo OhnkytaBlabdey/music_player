@@ -56,7 +56,7 @@ public class MusicManager{
 			files[i]="./music/"+(i+1)+".mp3";
 		}
 		manager= new MusicManager(files);
-		manager.setLoopMode(LoopMode.SINGLE);
+//		manager.setLoopMode(LoopMode.SINGLE);
 		manager.Play();
 		
 		
@@ -67,22 +67,25 @@ public class MusicManager{
 				manager.Pause();
 				manager.Change(i-1);
 			}
-			else {
+			else if(i==8) {
 				manager.Pause();
+			}
+			else if(i==9) {
+				manager.Resume();
 			}
 			i=scan.nextInt();
 		}
 		scan.close();
+		manager.Stop();
 		manager.Exit();
 		System.out.println("Main end");
 	}
 	
 	public MusicManager(String[] filenames) {
-//		mode = LoopMode.NONLOOP_LIST;
+
 		mode=LoopMode.LIST;
 		history=new ArrayList<Player>();
-//		mode=LoopMode.SINGLE;
-//		cmd=CMD.PLAY;
+
 		musics=new File[filenames.length];
 		for(int i=0;i<filenames.length;i++) {
 			musics[i]=new File(filenames[i]);
@@ -115,9 +118,10 @@ public class MusicManager{
 		switch (mode) {
 		case NONLOOP_SINGLE:
 			player.Stop();
+			player.Release();
 			break;
 		case SINGLE:
-			System.out.println("file : "+current.getName()+" index "+index);
+			System.out.println("[single loop] : "+current.getName()+" index "+index);
 			Change(current);
 			break;
 		case LIST:
@@ -131,8 +135,6 @@ public class MusicManager{
 			System.out.println("file : "+current.getName()+" index "+index);
 			Change(current);
 //			System.out.println("entered play method. step 3");
-
-			
 			break;
 
 		default:

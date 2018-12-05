@@ -252,7 +252,7 @@ class Choser extends JFileChooser{
 		
 	}
 }
-
+/*
 class PlayButton extends JButton{
 	public PlayButton() {
 		// TODO Auto-generated constructor stub
@@ -261,5 +261,5 @@ class PlayButton extends JButton{
 //		this.setMaximumSize(new Dimension(50, 20));
 	}
 	
-}
+}*/
 

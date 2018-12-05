@@ -65,6 +65,8 @@ public class MP3Player extends Thread implements sound.Player {
 		filename=file;
 		isplaying=true;
 		callBacker=cb;
+		setDaemon(true);
+		setName(file);
 	}
 	
 	public boolean isPlaying() {
@@ -92,10 +94,6 @@ public class MP3Player extends Thread implements sound.Player {
 //		callBacker.callback();
 	}
 	
-//	public void setLoop(boolean b) {
-//		shouldLoop=b;
-//	}
-	
 	public void play() {
 		
 		file = new File(filename);
@@ -105,16 +103,21 @@ public class MP3Player extends Thread implements sound.Player {
 			
 			player = new Player(buffer);
 
+			if(player!=null) {
         	System.out.println("mp3 is starting playing.");
 			player.play();
 			player.close();
 			System.out.println("mp3 has beed played over.");
+			}
 			callBacker.callback();
 			isplaying=false;
+			Release();
         }
         catch (JavaLayerException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
