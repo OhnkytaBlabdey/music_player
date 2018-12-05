@@ -9,10 +9,10 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class PlayButton extends JButton{
+public class StopButton extends JButton{
 
-	static private String default_src="conf/textures/play_b.png";
-	public PlayButton() {
+	static private String default_src="conf/textures/stop_b.png";
+	public StopButton() {
 		// TODO Auto-generated constructor stub
 		
 		ImageIcon icon = new ImageIcon(default_src);
@@ -22,6 +22,6 @@ public class PlayButton extends JButton{
 		setIcon(new ImageIcon(icon.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT)));
 		setPreferredSize(new Dimension(width, height));
 		setForeground(Color.BLUE);
-		setToolTipText("Play! ");
+		setToolTipText("Stop! ");
 	}
 }
