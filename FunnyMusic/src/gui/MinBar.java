@@ -31,6 +31,7 @@ public class MinBar extends JButton {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(e.getActionCommand().equals("Minimize")) {
+					if(GlobalVars.maxb.isMax()) {GlobalVars.maxb.MaximizeOrRestore();}
 					GlobalVars.getFrame().setExtendedState(JFrame.ICONIFIED);
 				}
 			}
