@@ -17,8 +17,8 @@ public class StopButton extends JButton{
 		
 		ImageIcon icon = new ImageIcon(default_src);
 		int width = 0,height = 0;
-		width=ConfKit.getScreenSize().width/20;
-		height=ConfKit.getScreenSize().height/20;
+		width=ConfKit.getScreenSize().width/40;
+		height=ConfKit.getScreenSize().height/30;
 		setIcon(new ImageIcon(icon.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT)));
 		setPreferredSize(new Dimension(width, height));
 		setForeground(Color.BLUE);
