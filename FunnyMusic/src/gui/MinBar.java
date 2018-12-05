@@ -3,9 +3,12 @@ package gui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
 import other.ConfKit;
 
@@ -23,5 +26,14 @@ public class MinBar extends JButton {
 		setForeground(Color.GRAY);
 		setToolTipText("Minimize ");
 		setActionCommand("Minimize");
+		addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(e.getActionCommand().equals("Minimize")) {
+					GlobalVars.getFrame().setExtendedState(JFrame.ICONIFIED);
+				}
+			}
+		});
 	}
 }

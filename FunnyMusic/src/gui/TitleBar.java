@@ -13,9 +13,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
+
 public class TitleBar extends JPanel{
 	public static void main(String[] args) {
 		JFrame frame=new JFrame();
+		GlobalVars.frame=frame;
 		frame.setLayout(new BorderLayout());
 		frame.setIconImage(new ImageIcon("conf/textures/logo.png").getImage());
 		
@@ -35,7 +37,6 @@ public class TitleBar extends JPanel{
 		add(new TitleLogo());
 		add("place holder", new JLabel("take up this room"));
 		add(new WindowBar());
-		
 	}
 }
 

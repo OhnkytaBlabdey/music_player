@@ -2,7 +2,10 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GraphicsEnvironment;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,5 +26,14 @@ public class MaxBar extends JButton {
 		setForeground(Color.GRAY);
 		setToolTipText("Maximize ");
 		setActionCommand("Maximize");
+		addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(e.getActionCommand().equals("Maximize")) {
+					GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().setFullScreenWindow(GlobalVars.getFrame()); 
+				}
+			}
+		});
 	}
 }

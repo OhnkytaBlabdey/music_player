@@ -16,6 +16,7 @@ public class PlayBar extends JPanel {
 		// TODO Auto-generated method stub
 
 		JFrame frame=new JFrame();
+		GlobalVars.frame=frame;
 		frame.setLayout(new BorderLayout());
 		frame.setIconImage(new ImageIcon("conf/textures/logo.png").getImage());
 		
@@ -46,7 +47,7 @@ class Group extends JPanel{
 		setLayout(new GridLayout(1, 4));
 		add(new StopButton());
 		add(new PlayButton());
-		add(new PlayButton());
+		add(new NextButton());
 		setBorder(new LineBorder(Color.DARK_GRAY));
 	}
 }
