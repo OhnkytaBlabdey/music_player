@@ -200,7 +200,8 @@ public class MusicManager{
 	public void Exit() {
 		for(Player p:history) {
 //			p.Pause();
-			p.Stop();
+			System.out.println(p+" going to be released.");
+//			p.Stop();
 			p.Release();
 		}
 	}
