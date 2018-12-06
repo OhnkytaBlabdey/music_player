@@ -159,6 +159,16 @@ public class DBsongs {
 		return res;
 	}
 	
+	public static String[] getSongs() {
+		music_info[] songs=queryAll();
+		ArrayList<String> list= new ArrayList<String>();
+		for(music_info mInfo:songs) {
+			list.add(mInfo.path);
+		}
+		String[] res=new String[] {};
+		return list.toArray(res);
+	}
+	
 	public static void deleteCol(String song,int sheet_id,String md5,String path) {
 		String sql_delete="DELETE FROM music WHERE song LIKE '"+song+"'";
 		try {

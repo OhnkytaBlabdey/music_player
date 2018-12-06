@@ -145,12 +145,17 @@ public class MusicManager{
 	
 	public void Change(File f) {
 
-		System.out.println("isplaying : "+player.isPlaying()); //true. ??
+//		System.out.println("isplaying : "+player.isPlaying()); //true. ??
+		// maybe null
 //		if(player!=null)
 //		{
 //			player.Stop();
 //			player.Release();
 //		}
+		
+//		player.setFile(f.getAbsolutePath());
+//		player.Start();
+		
 		System.out.println(f.getName()+"\tis going to start.");
 		player=new MP3Player(f.getAbsolutePath(),new CallBacker() {
 			@Override
@@ -158,6 +163,7 @@ public class MusicManager{
 				Play();
 			}
 		});
+//		Exit();
 		history.add(player);
 		player.Start();
 	}
@@ -168,20 +174,20 @@ public class MusicManager{
 	}
 	
 	
-	public void changeMusic() {
-		player.Stop();
-		index++;
-		player=null;
-		current=musics[index];
-		player=new MP3Player(current.getAbsolutePath(),new Mycb(this));
-		player.Start();
-	}
+//	public void changeMusic() {
+//		player.Stop();
+//		index++;
+//		player=null;
+//		current=musics[index];
+//		player=new MP3Player(current.getAbsolutePath(),new Mycb(this));
+//		player.Start();
+//	}
 	
 	public sound.Player getPlayer() {
 		return player;
 	}
 	
-	public void Start() {
+	private void Start() {
 		player.Start();
 		System.out.println("player thread for "+current.getName()+" has started.");
 	}
@@ -190,6 +196,7 @@ public class MusicManager{
 	}
 	public void Resume() {
 		player.Resume();
+//		Change(index);
 	}
 	public void Stop() {
 		player.Stop();
@@ -203,6 +210,7 @@ public class MusicManager{
 			System.out.println(p+" going to be released.");
 //			p.Stop();
 			p.Release();
+//			history.remove(p);
 		}
 	}
 	

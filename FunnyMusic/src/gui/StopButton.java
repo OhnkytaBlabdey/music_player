@@ -5,6 +5,8 @@ import other.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,5 +25,24 @@ public class StopButton extends JButton{
 		setPreferredSize(new Dimension(width, height));
 		setForeground(Color.BLUE);
 		setToolTipText("Stop! ");
+		setActionCommand("Stop");
+		addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getActionCommand().equals("Stop")) {
+				if(GlobalVars.music_inited ) {
+				if(GlobalVars.music_playing) {
+				GlobalVars.play_b.playOrPause();
+				}
+				
+				GlobalVars.music_inited=false;
+				GlobalVars.getMusic().Stop();
+				}
+				
+			}
+			}
+		});
 	}
 }

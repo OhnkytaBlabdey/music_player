@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
+import javazoom.jl.player.advanced.jlap;
 
 public class MP3Player extends Thread implements sound.Player {
 
@@ -61,11 +62,13 @@ public class MP3Player extends Thread implements sound.Player {
 	private File file;
 	private CallBacker callBacker;
 	
+	BufferedInputStream buffer;
+	
 	public MP3Player(String file,CallBacker cb) {
 		filename=file;
 		isplaying=true;
 		callBacker=cb;
-		setDaemon(true);
+//		setDaemon(true);
 		setName(file);
 	}
 	
@@ -75,6 +78,15 @@ public class MP3Player extends Thread implements sound.Player {
 	
 	public void setFile(String file) {
 		filename=file;
+		try {
+			buffer = new BufferedInputStream(new FileInputStream(file));
+			player = new Player(buffer);
+		} catch (FileNotFoundException | JavaLayerException e) {
+			e.printStackTrace();
+		}
+	}
+	public Player getInnerPlayer() {
+		return player;
 	}
 	
 	public void pauseOrContinue() {
@@ -97,7 +109,7 @@ public class MP3Player extends Thread implements sound.Player {
 	public void play() {
 		
 		file = new File(filename);
-		BufferedInputStream buffer = null;
+		buffer = null;
 		try {
 			buffer = new BufferedInputStream(new FileInputStream(file));
 			
@@ -154,8 +166,12 @@ public class MP3Player extends Thread implements sound.Player {
 	public void Release() {
 		// TODO Auto-generated method stub
 		try {
+			
+			this.interrupt();
+			this.stop();
 			this.finalize();
-//			System.out.println("finalized.");
+			System.out.println("finalized.");
+			
 		} catch (Throwable e) {
 			// TODO: handle exception
 			e.printStackTrace();
