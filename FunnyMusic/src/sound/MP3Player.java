@@ -82,6 +82,7 @@ public class MP3Player extends Thread implements sound.Player {
 		} catch (JavaLayerException | FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		MusicManager.player=this;
 	}
 	
 	public MP3Player(CallBacker cb) {
@@ -142,10 +143,10 @@ public class MP3Player extends Thread implements sound.Player {
 
 		try {
 			if(player!=null) {
-        	System.out.println("mp3 is starting playing.");
+        	System.out.println("[Mp3Player]: mp3 is starting playing.");
 			player.play();
 			player.close();
-			System.out.println("mp3 has beed played over.");
+			System.out.println("[Mp3Player]: mp3 has beed played over.");
 			}
 //			callBacker.callback();
 			isplaying=false;

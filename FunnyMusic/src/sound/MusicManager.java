@@ -39,7 +39,7 @@ public class MusicManager{
 		
 	}
 	
-	private sound.MP3Player player;
+	static public sound.MP3Player player;
 //	private Collection<Player> history;
 //	private sound.Player last;
 	
@@ -65,7 +65,7 @@ public class MusicManager{
 			files[i]="./music/"+(i+1)+".mp3";
 		}
 		manager= new MusicManager(files);
-		manager.Play();
+//		manager.Play();
 		
 		
 		int i=scan.nextInt();
@@ -80,6 +80,8 @@ public class MusicManager{
 			}
 			else if(i==9) {
 				manager.Resume();
+			}else if(i==7) {
+				manager.Stop();
 			}
 			i=scan.nextInt();
 		}
@@ -87,12 +89,14 @@ public class MusicManager{
 		manager.Stop();
 		manager.Exit();
 		System.out.println("Main end");
+		System.exit(0);
 	}
 	
 	public MusicManager(String[] filenames) {
 
 		mode=LoopMode.LIST;
 		status=PlayerStatus.UNCREATED;
+		new PlayerListener().start();
 
 		musics=new File[filenames.length];
 		for(int i=0;i<filenames.length;i++) {
@@ -100,18 +104,16 @@ public class MusicManager{
 		}
 		current=musics[0];
 
-		player=new MP3Player(musics[0].getAbsolutePath(),new CallBacker() {
-			@Override
-			public void callback() {
-				Play();
-			}
-		});
+		player=new MP3Player(musics[0].getAbsolutePath(),null);
 		index=0;
 		ended=false;
 	}
 
 	public PlayerStatus getStatus() {
 		return status;
+	}
+	public void setStatus(PlayerStatus s) {
+		status=s;
 	}
 	
 	public boolean isPlaying() {
@@ -148,7 +150,7 @@ public class MusicManager{
 
 			index=index%musics.length;
 			current=musics[index];
-			System.out.println("file : "+current.getName()+" index "+index);
+			System.out.println("[Music]: current playing is "+current.getName()+" - index "+index);
 			Change(current);
 			break;
 
@@ -162,17 +164,15 @@ public class MusicManager{
 		Stop();
 		if(status==PlayerStatus.UNCREATED) {
 		System.out.println(f.getName()+"\tis going to start.");
-		player=new MP3Player(f.getAbsolutePath(),new CallBacker() {
-			@Override
-			public void callback() {
-				Play();
-			}
-		});
+		player=new MP3Player(f.getAbsolutePath(),null);
+		status=PlayerStatus.UNSTARTED;
+		Start();
 		}
 		else if(status==PlayerStatus.UNLOADED) {
 			player.setFile(f.getAbsolutePath());
+			Start();
 		}
-		Start();
+		
 	}
 	
 	public void Change(int i) {
@@ -187,25 +187,35 @@ public class MusicManager{
 	private void Start() {
 		if(status==PlayerStatus.UNSTARTED) {
 			player.start();
+			status=PlayerStatus.PLAYING;
+		}else {
+			System.err.println("[Music]: current status is "+status+" cannot START.");
 		}
 	}
 	public void Pause() {
 		if(status==PlayerStatus.PLAYING) {
 			player.suspend();
 			status=PlayerStatus.PAUSED;
+		}else {
+			System.err.println("[Music]: current status is "+status+" cannot PAUSE.");
 		}
 	}
 	public void Resume() {
 		if(status==PlayerStatus.PAUSED) {
 			player.resume();
 			status=PlayerStatus.PLAYING;
+		}else {
+			System.err.println("[Music]: current status is "+status+" cannot RESUME.");
 		}
 	}
 	public void Stop() {
 		if(status==PlayerStatus.PLAYING || status == PlayerStatus.PAUSED) {
+			player.interrupt();
 			player.stop();
 			status=PlayerStatus.UNCREATED;
 			player=null;
+		}else {
+			System.err.println("[Music]: current status is "+status+" cannot STOP.");
 		}
 	}
 	
@@ -220,7 +230,7 @@ public class MusicManager{
 	public void setMusicList(File[] files) {
 		musics=files;
 		current=files[0];
-		System.out.println("setMusicList, first file: "+current.getAbsolutePath());
+		System.out.println("[Music]: setMusicList, first file is "+current.getAbsolutePath());
 	}
 	public File getCurrentMusic() {
 		return current;
