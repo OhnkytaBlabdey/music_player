@@ -25,8 +25,8 @@ public class IList extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	protected JList list;
-	private JScrollPane listScro;
-	Vector<IListItemData> items ;
+	protected JScrollPane listScro;
+	protected Vector<IListItemData> items ;
 
 	public IList(){
 
@@ -47,7 +47,7 @@ public class IList extends JPanel{
 		listScro = new JScrollPane(list);
 		listScro.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		this.add(listScro);
-		
+		setOpaque(false);
 //		init();
 
 //		showMe();

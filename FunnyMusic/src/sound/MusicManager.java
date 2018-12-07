@@ -209,7 +209,7 @@ public class MusicManager{
 	public void setMusicList(File[] files) {
 		musics=files;
 		current=files[0];
-		System.out.println("setMusicList"+current.getName());
+		System.out.println("setMusicList, first file: "+current.getAbsolutePath());
 	}
 
 	public File getCurrentMusic() {

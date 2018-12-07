@@ -31,14 +31,22 @@ public class PlayBar extends JPanel {
 		frame.setVisible(true);
 	}
 	
+	private JLabel name;
+	
 	public PlayBar() {
 		// TODO Auto-generated constructor stub
+		GlobalVars.play_bar=this;
 		setLayout(new GridLayout(1, 4));
 		add(new Group());
-		add("place holder", new JLabel("take up this room"));
+		name=new JLabel();
+		add(name);
 		add("place holder", new JLabel("take up this room"));
 		setBorder(new LineBorder(Color.CYAN));
 	}
+	public void setSong(String name) {
+		this.name.setText(name);
+	}
+	
 
 }
 
