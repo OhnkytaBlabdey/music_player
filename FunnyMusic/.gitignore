@@ -18,6 +18,7 @@
 *.gif
 
 /tmp
+*.jar
 
 *.zip
 *.7z
