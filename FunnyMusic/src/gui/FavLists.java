@@ -5,6 +5,7 @@ import java.io.File;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import db.music_info;
 import db.sheet_info;
 
 public class FavLists extends IList {
@@ -16,7 +17,14 @@ public class FavLists extends IList {
 			public void valueChanged(ListSelectionEvent e) {
 				// TODO Auto-generated method stub
 				if(e.getValueIsAdjusting()) {
-					System.out.println(e);
+//					System.out.println(e);
+					IListItemData data=(IListItemData) list.getSelectedValue();
+					music_info[] infos = GlobalVars.getDBSongs().querySheet(data.getLabelName());
+					
+					for(music_info mInfo:infos) {
+							addItem("conf/textures/song.png", mInfo.song, mInfo.path, 30, 30);
+					}
+					System.out.println("[favlist] sheet : "+data.getLabelName());
 				}
 			}
 		});
