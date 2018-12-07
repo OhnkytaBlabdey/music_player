@@ -3,6 +3,8 @@ package gui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,5 +24,16 @@ public class NextButton extends JButton {
 		setPreferredSize(new Dimension(width, height));
 		setForeground(Color.BLUE);
 		setToolTipText("Next! ");
+		setActionCommand("Next");
+addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getActionCommand().equals("Next")) {
+					GlobalVars.songs_list.NextSong();
+				}
+			}
+		});
 	}
 }

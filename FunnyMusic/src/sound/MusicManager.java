@@ -127,6 +127,7 @@ public class MusicManager{
 	public void setCurrent(File f) {
 		current=f;
 		//TODO
+		status=PlayerStatus.UNCREATED;
 
 	}
 	
@@ -174,7 +175,15 @@ public class MusicManager{
 			player.setFile(f.getAbsolutePath());
 			Start();
 		}
-		
+		for(int i=0;i<musics.length;i++) {
+			if(musics[i].getAbsolutePath().equals(current.getAbsolutePath())) {
+				index=i;
+			}
+		}
+	}
+	
+	public void Next() {
+		Change((index+1)%musics.length);
 	}
 	
 	public void Change(int i) {

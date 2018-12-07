@@ -19,6 +19,7 @@ public abstract class GlobalVars {
 	public static MaxBar maxb;
 	public static PlayButton play_b;
 	public static PlayBar play_bar;
+	public static SongsList songs_list;
 	/*
 	 * music playing status
 	 * */

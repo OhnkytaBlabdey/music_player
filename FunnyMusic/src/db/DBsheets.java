@@ -114,10 +114,10 @@ public class DBsheets {
 		}
 	}
 	public static void insertCol(String name,String date,String user,String path) {
-		String sql_insert="INSERT INTO sheet (sheet_name,create_date,sheet_user,path_cover) VALUES('"+name+"', '"+date+"', '"+user+"', '"+path+"' )";
+		String sql_insert1="INSERT INTO sheet (sheet_name,create_date,sheet_user,path_cover) VALUES('"+name+"', '"+date+"', '"+user+"', '"+path+"' )";
 		try {
 			Statement stmt_insert=conn.createStatement();
-			stmt_insert.executeUpdate(sql_insert);
+			stmt_insert.executeUpdate(sql_insert1);
 			
 			conn.commit();
 			stmt_insert.close();
@@ -145,13 +145,13 @@ public class DBsheets {
 	
 	public static String getNameByID(int id) {
 		String name = null;
-		String sql_query="SELECT sheet_name FROM sheet WHERE id = "+id+";";
+		String sql_query="SELECT sheet_name FROM sheet WHERE id="+id;
 		try {
 			Statement stmt_query=conn.createStatement();
 			
 			ResultSet result = stmt_query.executeQuery(sql_query);
 			if(result.next()) {
-				name=result.getString(1);
+				name=result.getString("sheet_name");
 			}
 		}catch (SQLException e) {
 			e.printStackTrace();

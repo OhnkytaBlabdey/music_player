@@ -17,6 +17,7 @@ public class SongsList extends IList{
 public SongsList() {
 	// TODO Auto-generated constructor stub
 	super();
+	GlobalVars.songs_list=this;
 	
 	list.addListSelectionListener(new ListSelectionListener() {
 		
@@ -27,7 +28,8 @@ public SongsList() {
 			if(e.getValueIsAdjusting()) {
 //				System.out.println(e);
 				IListItemData data=(IListItemData) list.getSelectedValue();
-				GlobalVars.getMusic().next_song=new File(data.getPath());
+				GlobalVars.play_bar.setSong(data.getLabelName());
+				GlobalVars.getMusic().setCurrent(new File(data.getPath()));
 				System.out.println("[songlist] next playing : "+data.getPath());
 				
 				
@@ -105,5 +107,12 @@ public SongsList() {
 	addItem("tmp/5.jpg","song3", "music/3.mp3", 20, 20);
 	*/
 }
+	public void NextSong() {
+		list.setSelectedIndex((list.getSelectedIndex()+1)%(list.getLastVisibleIndex()+1));
+		IListItemData data=(IListItemData) list.getSelectedValue();
+		GlobalVars.play_bar.setSong(data.getLabelName());
+		GlobalVars.getMusic().setCurrent(new File(data.getPath()));
+		System.out.println("[songlist] next playing : "+data.getPath());
+	}
 }
 
