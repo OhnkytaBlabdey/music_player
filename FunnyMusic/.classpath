@@ -9,13 +9,12 @@
 	<classpathentry exported="true" kind="lib" path="sqlite-jdbc-3.23.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="jl1.0.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="basicplayer3.0.jar"/>
-	<!-- <classpathentry kind="lib" path="lib/commons-logging-api.jar"/> -->
-	<!-- <classpathentry kind="lib" path="lib/jl1.0.jar"/> -->
-	<!-- <classpathentry kind="lib" path="lib/jogg-0.0.7.jar"/> -->
-	<!-- <classpathentry kind="lib" path="lib/jorbis-0.0.15.jar"/> -->
-	<!-- <classpathentry kind="lib" path="lib/jspeex0.9.7.jar"/> -->
-	<!-- <classpathentry kind="lib" path="lib/mp3spi1.9.4.jar"/> -->
-	<!-- <classpathentry kind="lib" path="lib/tritonus_share.jar"/> -->
-	<!-- <classpathentry kind="lib" path="lib/vorbisspi1.0.2.jar"/> -->
+	<classpathentry kind="lib" path="commons-logging-api-1.1.jar"/>
+	<classpathentry kind="lib" path="jme3-jogg-3.2.0-stable.jar"/>
+	<classpathentry kind="lib" path="jorbis-0.0.17.jar"/>
+	<classpathentry kind="lib" path="mp3spi-1.9.5-1.jar"/>
+	<classpathentry kind="lib" path="speex-2.1.0.BETA4.jar"/>
+	<classpathentry kind="lib" path="tritonus_share-0.3.6.jar"/>
+	<classpathentry kind="lib" path="vorbisspi-1.0.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

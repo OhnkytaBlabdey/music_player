@@ -47,7 +47,7 @@ public class BasicPlayerTest implements BasicPlayerListener
 	public static void main(String[] args)
 	{
 		BasicPlayerTest test = new BasicPlayerTest();
-		test.play(args[0]);		
+		test.play("music/2.mp3");		
 	}
 	
 	/**
