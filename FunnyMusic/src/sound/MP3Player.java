@@ -191,17 +191,11 @@ public class MP3Player extends Thread implements sound.Player {
 	@Override
 	public void Release() {
 		// TODO Auto-generated method stub
-		try {
-			
-			this.interrupt();
-			this.stop();
-			this.finalize();
-			System.out.println("finalized.");
-			
-		} catch (Throwable e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
+//		try {
+//			throw new InterruptedException();
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 }

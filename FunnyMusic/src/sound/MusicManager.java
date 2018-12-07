@@ -161,7 +161,9 @@ public class MusicManager{
 	}
 	
 	public void Change(File f) {
-		Stop();
+		if(status==PlayerStatus.PLAYING||status==PlayerStatus.PAUSED) {
+			Stop();
+		}
 		if(status==PlayerStatus.UNCREATED) {
 		System.out.println(f.getName()+"\tis going to start.");
 		player=new MP3Player(f.getAbsolutePath(),null);
@@ -210,8 +212,10 @@ public class MusicManager{
 	}
 	public void Stop() {
 		if(status==PlayerStatus.PLAYING || status == PlayerStatus.PAUSED) {
-			player.interrupt();
+//			player.interrupt();
 			player.stop();
+			player.getInnerPlayer().close();
+//			player.Release();
 			status=PlayerStatus.UNCREATED;
 			player=null;
 		}else {
