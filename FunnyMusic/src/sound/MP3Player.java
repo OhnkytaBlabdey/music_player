@@ -6,6 +6,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+
+import gui.GlobalVars;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 import javazoom.jl.player.advanced.jlap;
@@ -118,7 +120,22 @@ public class MP3Player extends Thread implements sound.Player {
 	public void run() {
 		if(used) return;
 		used=true;
-		play();
+		synchronized (GlobalVars.music_ended) {
+			if(GlobalVars.music_ended[0]) {
+				try {
+					throw new Exception("step error");
+				} catch (java.lang.Exception e) {
+					e.printStackTrace();
+				}
+			}
+			GlobalVars.music_ended[0]=false;
+
+			play();
+
+			GlobalVars.music_ended[0]=true;
+			GlobalVars.music_ended.notify();
+		}
+		
 	}
 	
 	public void play() {
@@ -130,7 +147,7 @@ public class MP3Player extends Thread implements sound.Player {
 			player.close();
 			System.out.println("mp3 has beed played over.");
 			}
-			callBacker.callback();
+//			callBacker.callback();
 			isplaying=false;
 //			interrupt();
         }

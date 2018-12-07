@@ -24,6 +24,7 @@ public abstract class GlobalVars {
 	 * */
 	static public boolean music_playing;
 	static public boolean music_inited;
+	static public boolean[] music_ended=new boolean[2];
 	
 	public static JFrame getFrame() {
 		if(frame==null ) {

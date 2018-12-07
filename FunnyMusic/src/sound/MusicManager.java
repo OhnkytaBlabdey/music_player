@@ -65,7 +65,6 @@ public class MusicManager{
 			files[i]="./music/"+(i+1)+".mp3";
 		}
 		manager= new MusicManager(files);
-//		manager.setLoopMode(LoopMode.SINGLE);
 		manager.Play();
 		
 		
