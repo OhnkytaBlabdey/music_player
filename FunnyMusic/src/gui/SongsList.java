@@ -24,9 +24,11 @@ public SongsList() {
 		@Override
 		public void valueChanged(ListSelectionEvent e) {
 			// TODO Auto-generated method stub
+
 			if(e.getValueIsAdjusting()) {
-//				System.out.println(e);
+				System.out.println(e);
 				System.out.println("[songlist]");
+				
 			if(!GlobalVars.music_inited && !GlobalVars.music_playing) {
 				IListItemData data=(IListItemData) list.getSelectedValue();
 			GlobalVars.getMusic().Stop();
@@ -63,12 +65,17 @@ public SongsList() {
 	
 	JPopupMenu menu=new JPopupMenu();
 	JMenuItem item_add=new JMenuItem("Add Song");
+	Mp3Chooser chooser=new Mp3Chooser();
 	item_add.addActionListener(new ActionListener() {
-		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
+			chooser.showOpenDialog(GlobalVars.getFrame());
+			File f=chooser.getSelectedFile();
+			if(f!=null) {
+			addItem("", f.getName(), f.getAbsolutePath(), 30, 30);
+//			GlobalVars.getDBSongs().insertCol(0, f.getAbsolutePath());
+			}
 		}
 	});
 	menu.add(item_add);
@@ -86,7 +93,7 @@ public SongsList() {
 	music_info[] infos = GlobalVars.getDBSongs().queryAll();
 	
 	for(music_info mInfo:infos) {
-			addItem("tmp/5.jpg", mInfo.song, mInfo.path, 30, 30);
+			addItem("conf/textures/song.png", mInfo.song, mInfo.path, 30, 30);
 	}
 	/*
 	addItem("tmp/5.jpg","song3", "music/3.mp3", 20, 20);

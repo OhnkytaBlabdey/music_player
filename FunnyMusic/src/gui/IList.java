@@ -55,6 +55,9 @@ public class IList extends JPanel{
 	}
 	
 	public void addItem(String picpath,String text,String path,int w,int h) {
+		if(picpath.equals("")) {
+			picpath="conf/textures/song.png";
+		}
 		ImageIcon icon= new ImageIcon(picpath);//getImage().getScaledInstance(w, h, java.awt.Image.SCALE_DEFAULT)
 		icon.setImage(icon.getImage().getScaledInstance(w, h, java.awt.Image.SCALE_DEFAULT));
 		items.add(new IListItemData(text,icon,path));
