@@ -2,10 +2,10 @@ package db;
 
 public class music_info {
 
-	String song;
-	int sheet_id;
-	String md5;
-	String path;
+	public String song;
+	public int sheet_id;
+	public String md5;
+	public String path;
 	public music_info(String song,int sheet_id,String md5,String path) {
 		this.song=song;
 		this.sheet_id=sheet_id;

@@ -123,7 +123,8 @@ public class MP3Player extends Thread implements sound.Player {
 			}
 			callBacker.callback();
 			isplaying=false;
-			Release();
+//			Release();
+			interrupt();
         }
         catch (JavaLayerException e) {
 			e.printStackTrace();
@@ -155,6 +156,7 @@ public class MP3Player extends Thread implements sound.Player {
 	@Override
 	public void Stop() {
 //		shouldLoop=false;
+		if(player==null) return;
 		if(this.isAlive())
 		player.close();
 		player=null;

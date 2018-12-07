@@ -111,6 +111,10 @@ public class MusicManager{
 		return ended;
 	}
 	
+	public void setCurrent(File f) {
+		current=f;
+	}
+	
 	
 	public void Play() {
 		System.out.println("\n\nLoopMode is : "+mode);
@@ -147,14 +151,6 @@ public class MusicManager{
 
 //		System.out.println("isplaying : "+player.isPlaying()); //true. ??
 		// maybe null
-//		if(player!=null)
-//		{
-//			player.Stop();
-//			player.Release();
-//		}
-		
-//		player.setFile(f.getAbsolutePath());
-//		player.Start();
 		
 		System.out.println(f.getName()+"\tis going to start.");
 		player=new MP3Player(f.getAbsolutePath(),new CallBacker() {
@@ -172,17 +168,7 @@ public class MusicManager{
 		index=i;
 		Change(musics[index]);
 	}
-	
-	
-//	public void changeMusic() {
-//		player.Stop();
-//		index++;
-//		player=null;
-//		current=musics[index];
-//		player=new MP3Player(current.getAbsolutePath(),new Mycb(this));
-//		player.Start();
-//	}
-	
+
 	public sound.Player getPlayer() {
 		return player;
 	}
@@ -199,18 +185,17 @@ public class MusicManager{
 //		Change(index);
 	}
 	public void Stop() {
-		player.Stop();
-		player.Release();
-		player=null;
+		for(Player player:history) {
+			if(player!=null)
+			player.Stop();
+		}
 	}
 	
 	public void Exit() {
 		for(Player p:history) {
-//			p.Pause();
 			System.out.println(p+" going to be released.");
-//			p.Stop();
 			p.Release();
-//			history.remove(p);
+
 		}
 	}
 	

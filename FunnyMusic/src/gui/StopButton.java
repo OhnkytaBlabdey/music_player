@@ -30,12 +30,12 @@ public class StopButton extends JButton{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				if(e.getActionCommand().equals("Stop")) {
 				if(GlobalVars.music_inited ) {
-				if(GlobalVars.music_playing) {
-				GlobalVars.play_b.playOrPause();
-				}
+
+					if(GlobalVars.music_playing) {
+					GlobalVars.play_b.playOrPause();
+					}
 				
 				GlobalVars.music_inited=false;
 				GlobalVars.getMusic().Stop();

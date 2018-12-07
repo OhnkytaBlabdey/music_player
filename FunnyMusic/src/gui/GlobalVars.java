@@ -2,6 +2,7 @@ package gui;
 
 import javax.swing.JFrame;
 
+import db.DBsheets;
 import db.DBsongs;
 import db.music_info;
 import sound.MusicManager;
@@ -11,6 +12,7 @@ public abstract class GlobalVars {
 	public static JFrame frame;
 	public static MusicManager manager;
 	public static DBsongs dbSongs;
+	public static DBsheets dbSheets;
 	public static int x,y;
 	
 	
@@ -40,5 +42,12 @@ public abstract class GlobalVars {
 			DBsongs.init();
 		}
 		return dbSongs;
+	}
+	public static DBsheets getDBSheets() {
+		if(dbSheets==null) {
+			dbSheets=new DBsheets();
+			dbSheets.init();
+		}
+		return dbSheets;
 	}
 }

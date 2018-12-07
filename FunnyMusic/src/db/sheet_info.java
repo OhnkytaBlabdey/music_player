@@ -1,11 +1,12 @@
 package db;
 
 public class sheet_info {
-	int id;
-	String name;
-	String date;
-	String user;
-	String path;
+	
+	public int id;
+	public String name;
+	public String date;
+	public String user;
+	public String path;
 	public sheet_info() {
 	}
 	public sheet_info(int id,String name,String date,String user,String path){

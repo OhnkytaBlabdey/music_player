@@ -67,4 +67,13 @@ public class PlayButton extends JButton{
 			GlobalVars.music_playing=false;
 		}
 	}
+	public void setPauseIcon() {
+		setIcon(new ImageIcon(icon2.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT)));
+		setPreferredSize(new Dimension(width, height));
+		if(GlobalVars.music_inited) {
+		}else {
+		GlobalVars.music_inited=true;
+		}
+		GlobalVars.music_playing=true;
+	}
 }

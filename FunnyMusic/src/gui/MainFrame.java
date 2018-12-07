@@ -27,7 +27,9 @@ public class MainFrame {
 		
 		frame.add(new PlayBar(),BorderLayout.PAGE_END);
 		frame.add(new TitleBar(),BorderLayout.PAGE_START);
-		frame.add(new SceneBG(),BorderLayout.CENTER);
+//		frame.add(new SceneBG(),BorderLayout.CENTER);
+		frame.add(new SongsList(),BorderLayout.LINE_END);
+		frame.add(new FavLists(), BorderLayout.LINE_START);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocation(300, 130);
