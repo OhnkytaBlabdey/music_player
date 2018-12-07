@@ -22,7 +22,7 @@ public class FavLists extends IList {
 		});
 		sheet_info[] infos=GlobalVars.getDBSheets().queryAll();
 		for(sheet_info info:infos) {
-			addItem("tmp/9.jpg", info.user+"\t-\t"+info.name, info.path, 30, 30);
+			addItem(info.path, info.user+"\t-\t"+info.name, null, 30, 30);
 		}
 	}
 }

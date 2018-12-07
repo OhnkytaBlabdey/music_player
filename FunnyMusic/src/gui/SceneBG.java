@@ -26,7 +26,8 @@ public class SceneBG extends JPanel {
 		height=ConfKit.getScreenSize().height/2;
 
 		JLabel pic=new JLabel(new ImageIcon(icon.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT)));
-		pic.setPreferredSize(new Dimension(width, height));
+//		pic.setPreferredSize(new Dimension(width, height));
+		pic.setPreferredSize(GlobalVars.getFrame().getSize());
 		pic.setForeground(Color.GRAY);
 		pic.setToolTipText("background pic");
 		add(pic);
