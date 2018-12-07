@@ -22,7 +22,7 @@ public class FavLists extends IList {
 					music_info[] infos = GlobalVars.getDBSongs().querySheet(data.getLabelName());
 					
 					for(music_info mInfo:infos) {
-							addItem("conf/textures/song.png", mInfo.song, mInfo.path, 30, 30);
+						GlobalVars.songs_list.addItem("conf/textures/song.png", mInfo.song, mInfo.path, 30, 30);
 					}
 					System.out.println("[favlist] sheet : "+data.getLabelName());
 				}
@@ -30,7 +30,8 @@ public class FavLists extends IList {
 		});
 		sheet_info[] infos=GlobalVars.getDBSheets().queryAll();
 		for(sheet_info info:infos) {
-			addItem(info.path, info.user+"\t-\t"+info.name, null, 30, 30);
+//			addItem(info.path, info.user+"\t-\t"+info.name, null, 30, 30);
+			addItem(info.path, info.name, null, 30, 40);
 		}
 	}
 }
