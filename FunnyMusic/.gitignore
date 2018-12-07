@@ -1,10 +1,10 @@
 
 # ide conf
 
-/.settings
-/.metadata
-/.classpath
-/.project
+#/.settings
+#/.metadata
+#/.classpath
+#/.project
 
 #binary
 *.class
