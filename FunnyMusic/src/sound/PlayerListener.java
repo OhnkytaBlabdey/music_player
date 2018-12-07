@@ -22,13 +22,10 @@ public class PlayerListener extends Thread {
 					/*
 					 * GlobalVars.getMusic().Play();
 					 */
+					GlobalVars.getMusic().Play();
 					System.out.println("changing completed");
 					GlobalVars.music_ended.notify();
-					try {
-						System.in.read();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+//					try {System.in.read();} catch (IOException e) {e.printStackTrace();}
 				}else {
 					try {
 						System.out.println("playing not ended, waiting");
