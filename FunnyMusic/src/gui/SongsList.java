@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -60,17 +62,26 @@ public SongsList() {
 	});
 	
 	JPopupMenu menu=new JPopupMenu();
-	JMenuItem item=new JMenuItem("Add Song");
-	menu.add(item);
-	
-	addMouseListener(new MouseAdapter() {
+	JMenuItem item_add=new JMenuItem("Add Song");
+	item_add.addActionListener(new ActionListener() {
+		
 		@Override
-		public void mouseClicked(MouseEvent e) {
+		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			super.mouseClicked(e);
-			menu.show(listScro, 10, 10);
+			
 		}
 	});
+	menu.add(item_add);
+	
+	list.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			if (e.isPopupTrigger()) {
+				menu.show(e.getComponent(), e.getX(), e.getY());	
+			}
+		}
+	});
+//	add(menu);
 	
 	music_info[] infos = GlobalVars.getDBSongs().queryAll();
 	

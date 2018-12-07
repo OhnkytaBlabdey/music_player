@@ -56,6 +56,7 @@ public class MP3Player extends Thread implements sound.Player {
 	
 	private String filename;
 	private boolean isplaying;
+	private boolean used=false;
 
 	
 	private Player player;
@@ -64,14 +65,27 @@ public class MP3Player extends Thread implements sound.Player {
 	
 	BufferedInputStream buffer;
 	
-	public MP3Player(String file,CallBacker cb) {
-		filename=file;
+	public MP3Player(String path,CallBacker cb) {
+		filename=path;
 		isplaying=true;
 		callBacker=cb;
-//		setDaemon(true);
-		setName(file);
+//		setName(file);
+		
+		file = new File(path);
+		buffer = null;
+		
+		try {
+			buffer = new BufferedInputStream(new FileInputStream(file));
+			player = new Player(buffer);
+		} catch (JavaLayerException | FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
+	public MP3Player(CallBacker cb) {
+		callBacker=cb;
+	}
+
 	public boolean isPlaying() {
 		return isplaying;
 	}
@@ -102,19 +116,14 @@ public class MP3Player extends Thread implements sound.Player {
 	
 	@Override
 	public void run() {
+		if(used) return;
+		used=true;
 		play();
-//		callBacker.callback();
 	}
 	
 	public void play() {
-		
-		file = new File(filename);
-		buffer = null;
-		try {
-			buffer = new BufferedInputStream(new FileInputStream(file));
-			
-			player = new Player(buffer);
 
+		try {
 			if(player!=null) {
         	System.out.println("mp3 is starting playing.");
 			player.play();
@@ -123,14 +132,11 @@ public class MP3Player extends Thread implements sound.Player {
 			}
 			callBacker.callback();
 			isplaying=false;
-//			Release();
-			interrupt();
+//			interrupt();
         }
         catch (JavaLayerException e) {
 			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

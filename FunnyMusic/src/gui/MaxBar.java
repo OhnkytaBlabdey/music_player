@@ -15,7 +15,7 @@ import other.ConfKit;
 
 public class MaxBar extends JButton {
 
-	static private String default_src="conf/textures/maximize.png";
+	static private String default_src="conf/textures/maximize_b.png";
 	static private String default_src2="conf/textures/restore_b.png";
 	private boolean ismaxed;
 	

@@ -29,8 +29,18 @@ public class MusicManager{
 		
 	}
 	
-	private sound.Player player;
-	private Collection<Player> history;
+	public enum PlayerStatus{
+		UNCREATED,
+		UNLOADED,
+		UNSTARTED,
+		PLAYING,
+		PAUSED,
+//		STOPPED
+		
+	}
+	
+	private sound.MP3Player player;
+//	private Collection<Player> history;
 //	private sound.Player last;
 	
 	private File[] musics;
@@ -38,6 +48,7 @@ public class MusicManager{
 //	private boolean changing;
 	
 	private LoopMode mode;
+	private PlayerStatus status;
 //	private CMD cmd;
 	private int index;
 	private boolean ended;
@@ -45,12 +56,9 @@ public class MusicManager{
 	public static void main(String[] args) {
 
 		MusicManager manager ;
-		//= new MusicManager(new String[] {"*.mp3"});
-//		System.out.println(manager.getPlayer());
-		
+
 		Scanner scan= new Scanner(System.in);
-		
-		
+
 		String[] files = new String[6];
 		for(int i=0;i<6;++i) {
 			files[i]="./music/"+(i+1)+".mp3";
@@ -84,7 +92,7 @@ public class MusicManager{
 	public MusicManager(String[] filenames) {
 
 		mode=LoopMode.LIST;
-		history=new ArrayList<Player>();
+		status=PlayerStatus.UNCREATED;
 
 		musics=new File[filenames.length];
 		for(int i=0;i<filenames.length;i++) {
@@ -93,7 +101,6 @@ public class MusicManager{
 		current=musics[0];
 
 		player=new MP3Player(musics[0].getAbsolutePath(),new CallBacker() {
-			
 			@Override
 			public void callback() {
 				Play();
@@ -101,6 +108,10 @@ public class MusicManager{
 		});
 		index=0;
 		ended=false;
+	}
+
+	public PlayerStatus getStatus() {
+		return status;
 	}
 	
 	public boolean isPlaying() {
@@ -113,6 +124,8 @@ public class MusicManager{
 	
 	public void setCurrent(File f) {
 		current=f;
+		//TODO
+
 	}
 	
 	
@@ -130,7 +143,6 @@ public class MusicManager{
 			break;
 		case LIST:
 		case NONLOOP_LIST:
-//			System.out.println("entered play method. step 1");
 			index++;
 			if(mode==LoopMode.NONLOOP_LIST && index==musics.length) break;
 
@@ -138,7 +150,6 @@ public class MusicManager{
 			current=musics[index];
 			System.out.println("file : "+current.getName()+" index "+index);
 			Change(current);
-//			System.out.println("entered play method. step 3");
 			break;
 
 		default:
@@ -148,10 +159,8 @@ public class MusicManager{
 	}
 	
 	public void Change(File f) {
-
-//		System.out.println("isplaying : "+player.isPlaying()); //true. ??
-		// maybe null
-		
+		Stop();
+		if(status==PlayerStatus.UNCREATED) {
 		System.out.println(f.getName()+"\tis going to start.");
 		player=new MP3Player(f.getAbsolutePath(),new CallBacker() {
 			@Override
@@ -159,9 +168,11 @@ public class MusicManager{
 				Play();
 			}
 		});
-//		Exit();
-		history.add(player);
-		player.Start();
+		}
+		else if(status==PlayerStatus.UNLOADED) {
+			player.setFile(f.getAbsolutePath());
+		}
+		Start();
 	}
 	
 	public void Change(int i) {
@@ -174,44 +185,43 @@ public class MusicManager{
 	}
 	
 	private void Start() {
-		player.Start();
-		System.out.println("player thread for "+current.getName()+" has started.");
+		if(status==PlayerStatus.UNSTARTED) {
+			player.start();
+		}
 	}
 	public void Pause() {
-		player.Pause();
+		if(status==PlayerStatus.PLAYING) {
+			player.suspend();
+			status=PlayerStatus.PAUSED;
+		}
 	}
 	public void Resume() {
-		player.Resume();
-//		Change(index);
+		if(status==PlayerStatus.PAUSED) {
+			player.resume();
+			status=PlayerStatus.PLAYING;
+		}
 	}
 	public void Stop() {
-		for(Player player:history) {
-			if(player!=null)
-			player.Stop();
+		if(status==PlayerStatus.PLAYING || status == PlayerStatus.PAUSED) {
+			player.stop();
+			status=PlayerStatus.UNCREATED;
+			player=null;
 		}
 	}
 	
 	public void Exit() {
-		for(Player p:history) {
-			System.out.println(p+" going to be released.");
-			p.Release();
-
-		}
 	}
-	
 	public LoopMode getLoopMode() {
 		return mode;
 	}
 	public void setLoopMode(LoopMode loopMode) {
 		mode=loopMode;
 	}
-	
 	public void setMusicList(File[] files) {
 		musics=files;
 		current=files[0];
 		System.out.println("setMusicList, first file: "+current.getAbsolutePath());
 	}
-
 	public File getCurrentMusic() {
 		return current;
 	}
