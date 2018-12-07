@@ -8,6 +8,8 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+import db.DBsheets;
+import db.DBsongs;
 import other.ConfKit;
 
 
@@ -50,6 +52,10 @@ public class MainFrame {
 	public static void init() {
 //		initUI();
 		GlobalVars.getMusic();
+		GlobalVars.getDBSheets();
+		GlobalVars.getDBSongs();
+//		DBsheets.init();
+//		DBsongs.init();
 		
 		GlobalVars.getFrame().addMouseListener(new MouseAdapter() {
 			@Override

@@ -22,8 +22,9 @@ public class DBsheets {
 		 * */
 		init();
 //		deleteCol("song1", "66665555", "me", ".");
-		insertCol("song1", new Date().toString(), "a1a1a1a1a11a1ddff", "../../b/b/a/a/c__d/abc.mp3");
+//		insertCol("song1", new Date().toString(), "a1a1a1a1a11a1ddff", "../../b/b/a/a/c__d/abc.mp3");
 		System.out.println("id is "+getIDByName("song1"));
+		System.out.println("name is "+getNameByID(0));
 		sheet_info[] infos=queryAll();
 		for(sheet_info info:infos) {
 			System.out.println(info);
@@ -95,6 +96,22 @@ public class DBsheets {
 			e.printStackTrace();
 		}
 		  if(!tableExists("sheet")) createTable();
+		  if(getNameByID(0)==null) {
+			  insertCol(0,"MyFavlist", new Date().toString(), System.getenv().get("USERNAME"), "./conf/textures/song.png");
+		  }
+	}
+	private static void insertCol(int i, String name,String date,String user,String path) {
+		// TODO Auto-generated method stub
+		String sql_insert="INSERT INTO sheet (id,sheet_name,create_date,sheet_user,path_cover) VALUES("+i+",'"+name+"', '"+date+"', '"+user+"', '"+path+"' )";
+		try {
+			Statement stmt_insert=conn.createStatement();
+			stmt_insert.executeUpdate(sql_insert);
+			
+			conn.commit();
+			stmt_insert.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	public static void insertCol(String name,String date,String user,String path) {
 		String sql_insert="INSERT INTO sheet (sheet_name,create_date,sheet_user,path_cover) VALUES('"+name+"', '"+date+"', '"+user+"', '"+path+"' )";
@@ -126,6 +143,21 @@ public class DBsheets {
 		return -1;
 	}
 	
+	public static String getNameByID(int id) {
+		String name = null;
+		String sql_query="SELECT sheet_name FROM sheet WHERE id = "+id+";";
+		try {
+			Statement stmt_query=conn.createStatement();
+			
+			ResultSet result = stmt_query.executeQuery(sql_query);
+			if(result.next()) {
+				name=result.getString(1);
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return name;
+	}
 	public static void updateCol(String name,String date,String user,String path) {
 		//TODO
 	}

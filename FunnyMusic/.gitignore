@@ -16,6 +16,7 @@
 *.jpg
 *.png
 *.gif
+*.db-journal
 
 /tmp
 *.jar
