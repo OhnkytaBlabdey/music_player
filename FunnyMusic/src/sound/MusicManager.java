@@ -45,6 +45,7 @@ public class MusicManager{
 	
 	private File[] musics;
 	private File current;
+	public File next_song;
 //	private boolean changing;
 	
 	private LoopMode mode;

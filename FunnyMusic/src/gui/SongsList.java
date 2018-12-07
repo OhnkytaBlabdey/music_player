@@ -26,39 +26,42 @@ public SongsList() {
 			// TODO Auto-generated method stub
 
 			if(e.getValueIsAdjusting()) {
-				System.out.println(e);
-				System.out.println("[songlist]");
-				
-			if(!GlobalVars.music_inited && !GlobalVars.music_playing) {
+//				System.out.println(e);
 				IListItemData data=(IListItemData) list.getSelectedValue();
-			GlobalVars.getMusic().Stop();
-	
-				File[] files = new File[items.size()];
-				int i=0;
-				for(IListItemData d:items) {
-					files[i++]= new File(d.getPath());
-				}
-			GlobalVars.getMusic().setMusicList(files);
-			GlobalVars.getMusic().Change(new File(data.getPath()));
-			GlobalVars.play_bar.setSong(data.getLabelName());
-			GlobalVars.play_b.playOrPause();
-			
-				}
-			
-			
-			else if(GlobalVars.music_inited && GlobalVars.music_playing) {
-					IListItemData data=(IListItemData) list.getSelectedValue();
-					GlobalVars.getMusic().Stop();
-						File[] files = new File[items.size()];
-						int i=0;
-						for(IListItemData d:items) {
-							files[i++]= new File(d.getPath());
-						}
-					GlobalVars.getMusic().setMusicList(files);
-					GlobalVars.getMusic().Change(new File(data.getPath()));
-					GlobalVars.play_bar.setSong(data.getLabelName());
-					GlobalVars.play_b.playOrPause();
-				}
+				GlobalVars.getMusic().next_song=new File(data.getPath());
+				System.out.println("[songlist] next playing : "+data.getPath());
+				
+				
+//			if(!GlobalVars.music_inited && !GlobalVars.music_playing) {
+//				IListItemData data=(IListItemData) list.getSelectedValue();
+//			GlobalVars.getMusic().Stop();
+//	
+//				File[] files = new File[items.size()];
+//				int i=0;
+//				for(IListItemData d:items) {
+//					files[i++]= new File(d.getPath());
+//				}
+//			GlobalVars.getMusic().setMusicList(files);
+//			GlobalVars.getMusic().Change(new File(data.getPath()));
+//			GlobalVars.play_bar.setSong(data.getLabelName());
+//			GlobalVars.play_b.playOrPause();
+//			
+//				}
+//			
+//			
+//			else if(GlobalVars.music_inited && GlobalVars.music_playing) {
+//					IListItemData data=(IListItemData) list.getSelectedValue();
+//					GlobalVars.getMusic().Stop();
+//						File[] files = new File[items.size()];
+//						int i=0;
+//						for(IListItemData d:items) {
+//							files[i++]= new File(d.getPath());
+//						}
+//					GlobalVars.getMusic().setMusicList(files);
+//					GlobalVars.getMusic().Change(new File(data.getPath()));
+//					GlobalVars.play_bar.setSong(data.getLabelName());
+//					GlobalVars.play_b.playOrPause();
+//				}
 			}
 		}
 	});

@@ -40,6 +40,10 @@ addActionListener(new ActionListener() {
 				default:
 					break;
 				}
+				File f=getSelectedFile();
+				if(!(f.getName().endsWith(".mp3") || f.isDirectory()||f.getName().endsWith(".MP3")||f.getName().endsWith(".Mp3") )) {
+					setSelectedFile(null);
+				}
 			}
 		});
 	}
