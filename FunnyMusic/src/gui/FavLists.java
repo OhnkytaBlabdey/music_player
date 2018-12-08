@@ -57,7 +57,7 @@ public class FavLists extends IList {
 					System.out.println("[favlist] sheet : "+data.getLabelName());
 					System.out.println("[favlist] current sheet id : "+getCurrentSheetID());
 					if(GlobalVars.songs_list.items.size()<1) {
-						GlobalVars.songs_list.addItem("conf/textures/no_song.png", "当前歌单中没有歌曲", null, 30, 30);
+						GlobalVars.songs_list.addItem("conf/textures/no_song.png", "Current Favlist has no songs", null, 30, 30);
 					}
 				}
 			}

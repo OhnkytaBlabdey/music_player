@@ -7,7 +7,6 @@ import java.io.UnsupportedEncodingException;
 
 
 /**
- * ���MP3�ļ�����Ϣ
  * 
  */
 public class MP3Info {
@@ -35,33 +34,32 @@ public class MP3Info {
 	private byte[] buf;//MP3�ı�ǩ��Ϣ��byte����
 	
 	/**
-	 * ʵ����һ�����MP3�ļ�����Ϣ����
-	 * @param mp3 MP3�ļ�
-	 * @throws IOException ��ȡMP3�������MP3�ļ�������
+	 * 
+	 * @param mp3 MP3
+	 * @throws IOException
 	 */
 	public MP3Info(File mp3) throws IOException{
 		
-		buf = new byte[128];//��ʼ����ǩ��Ϣ��byte����
+		buf = new byte[128];//
 		
-		RandomAccessFile raf = new RandomAccessFile(mp3, "r");//�����д��ʽ��MP3�ļ�
-		raf.seek(raf.length() - 128);//�ƶ����ļ�MP3ĩβ
-		raf.read(buf);//��ȡ��ǩ��Ϣ
+		RandomAccessFile raf = new RandomAccessFile(mp3, "r");//
+		raf.seek(raf.length() - 128);//
+		raf.read(buf);//
 		
-		raf.close();//�ر��ļ�
+		raf.close();//
 		
-		if(buf.length != 128){//�����Ƿ�Ϸ�
+		if(buf.length != 128){//
 			throw new IOException("MP3��ǩ��Ϣ���ݳ��Ȳ��Ϸ�!");
 		}
 		
-		if(!"TAG".equalsIgnoreCase(new String(buf,0,3))){//��Ϣ��ʽ�Ƿ���ȷ
+		if(!"TAG".equalsIgnoreCase(new String(buf,0,3))){//
 			throw new IOException("MP3��ǩ��Ϣ���ݸ�ʽ����ȷ!");
 		}
 		
 	}
 
 	/**
-	 * ���Ŀǰ����ʱ�õ��ַ�����
-	 * @return Ŀǰ����ʱ�õ��ַ�����
+	 * @return
 	 */
 	public String getCharset() {
 		return charset;
@@ -69,7 +67,7 @@ public class MP3Info {
 
 	/**
 	 * ���ý���ʱ�õ��ַ�����
-	 * @param charset ����ʱ�õ��ַ�����
+	 * @param charset
 	 */
 	public void setCharset(String charset) {
 		this.charset = charset;
