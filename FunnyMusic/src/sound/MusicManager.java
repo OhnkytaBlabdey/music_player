@@ -182,7 +182,9 @@ public class MusicManager{
 			Start();
 		}
 		for(int i=0;i<musics.length;i++) {
-			if(musics[i].getAbsolutePath().equals(current.getAbsolutePath())) {
+			File file=musics[i];
+			if(file!=null && current!= null)
+			if(file.getAbsolutePath().equals(current.getAbsolutePath())) {
 				index=i;
 			}
 		}
@@ -253,6 +255,7 @@ public class MusicManager{
 		}
 		musics=files;
 		current=files[0];
+		if(current!=null)
 		System.out.println("[Music]: setMusicList, first file is "+current.getAbsolutePath());
 	}
 	public File getCurrentMusic() {

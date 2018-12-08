@@ -42,19 +42,25 @@ public class AddButton extends JButton{
 					chooser.showOpenDialog(GlobalVars.getFrame());
 					File f=chooser.getSelectedFile();
 					if(f!=null) {
-					GlobalVars.fav_lists.addItem(f.getAbsolutePath(), f.getName(),System.getenv("USERNAME"), 30, 30);
+					
 					GlobalVars.getDBSheets();
 					String name=null;
 					while (name==null) {
 						//TODO : input user name and favlist name
 						name=inputBar.showInputDialog(GlobalVars.getFrame(), "INPUT FAVLIST's NAME! ");
+						// input filter
+						name=name.replace('#', '_').replace('*', '_').replace('\'', '_').replace('"', '_').replace(';', '_').replace('(', '_').replace(')', '_');
 					}
-					String user=null;
+					
+					String user=inputBar.showInputDialog(GlobalVars.getFrame(), "INPUT your NAME! ");;
 					//TODO : input user name and favlist name
 					if (user==null) {
 						user=(String)System.getenv("USERNAME");
 					}
+					// input filter
+					user=user.replace('#', '_').replace('*', '_').replace('\'', '_').replace('"', '_').replace(';', '_').replace('(', '_').replace(')', '_');
 					DBsheets.insertCol(name,new Date().toString(),user ,f.getAbsolutePath());
+					GlobalVars.fav_lists.addItem(f.getAbsolutePath(), name,user, 30, 30);
 					}
 				}
 			}

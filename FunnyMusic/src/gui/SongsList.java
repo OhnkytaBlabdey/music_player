@@ -157,10 +157,10 @@ public SongsList() {
 //				items.remove(d);
 				continue;
 			}
-//			if(d.getPath()==null) {
-//				// ??
-//				continue;
-//			}
+			if(d.getPath()==null) {
+				// ??
+				continue;
+			}
 			files[i++]= new File(d.getPath());
 		}
 	GlobalVars.getMusic().setMusicList(files);

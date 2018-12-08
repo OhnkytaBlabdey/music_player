@@ -3,6 +3,7 @@ package gui;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.io.File;
 
 import javax.swing.JPanel;
 import javax.swing.event.ListSelectionEvent;
@@ -127,7 +128,7 @@ public class FavLists extends IList {
 	@Override
 	public void addItem(String picpath, String text, String path, int w, int h) {
 		// TODO Auto-generated method stub
-		if(picpath==null) picpath="./conf/textures/favlist.png";
+		if(picpath==null || new File(picpath)==null) picpath="./conf/textures/favlist.png";
 		super.addItem(picpath, text, path, w, h);
 	}
 	
