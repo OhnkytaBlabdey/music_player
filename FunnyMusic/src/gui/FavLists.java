@@ -1,13 +1,10 @@
 package gui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.File;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
-import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
+import javax.swing.JPanel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -15,12 +12,20 @@ import db.DBsheets;
 import db.DBsongs;
 import db.music_info;
 import db.sheet_info;
+import other.ConfKit;
 
 public class FavLists extends IList {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public FavLists() {
 		// TODO Auto-generated constructor stub
 		super();
 		GlobalVars.fav_lists=this;
+		setLayout(new GridLayout(2, 1));
+		
 		GlobalVars.getDBSheets();
 		sheet_info[] infos=DBsheets.queryAll();
 		for(sheet_info info:infos) {
@@ -36,17 +41,34 @@ public class FavLists extends IList {
 				if(!e.getValueIsAdjusting()) {
 //					System.out.println(e);
 					GlobalVars.songs_list.Clear();
+					
+					
 					IListItemData data=(IListItemData) list.getSelectedValue();
-					music_info[] infos = GlobalVars.getDBSongs().querySheet(data.getLabelName());
+					GlobalVars.getDBSongs();
+					music_info[] infos = DBsongs.querySheet(data.getLabelName());
 					
 					for(music_info mInfo:infos) {
 						GlobalVars.songs_list.addItem("conf/textures/song.png", mInfo.song, mInfo.path, 30, 30);
 					}
 					System.out.println("[favlist] sheet : "+data.getLabelName());
 					System.out.println("[favlist] current sheet id : "+getCurrentSheetID());
+					if(GlobalVars.songs_list.items.size()<1) {
+						GlobalVars.songs_list.addItem("conf/textures/no_song.png", "当前歌单中没有歌曲", null, 30, 30);
+					}
 				}
 			}
 		});
+		
+		JPanel panel=new JPanel();
+//		panel.setLayout(new GridLayout(1, 2));
+//		panel.setLayout(new FlowLayout(FlowLayout.LEADING));
+		panel.setOpaque(false);
+		panel.add(new AddButton());
+		panel.add(new DelButton());
+//		panel.setPreferredSize(new Dimension(ConfKit.getScreenSize().width/10, ConfKit.getScreenSize().height/20));
+
+		add(panel);
+		
 
 		//TODO add button and del button 
 		
@@ -104,7 +126,8 @@ public class FavLists extends IList {
 	}
 	
 	public int getCurrentSheetID() {
-		return GlobalVars.getDBSheets().getIDByName(((IListItemData)list.getSelectedValue()).getLabelName());
+		GlobalVars.getDBSheets();
+		return DBsheets.getIDByName(((IListItemData)list.getSelectedValue()).getLabelName());
 	}
 	
 }

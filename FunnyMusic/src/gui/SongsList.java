@@ -42,7 +42,19 @@ public SongsList() {
 				if(data==null) {
 //					list.setSelectedIndex(0);
 					setList();
+					list.setValueIsAdjusting(true);
 					//TODO
+					return;
+				}
+				if(data.getPath()==null) {
+					// empty list hint only
+//					items.remove(data);
+//					Clear();
+					if(items.size()>1) {
+						// change to new 
+					setList();
+					list.setValueIsAdjusting(true);
+					}
 					return;
 				}
 				
@@ -141,6 +153,10 @@ public SongsList() {
 		File[] files = new File[items.size()];
 		int i=0;
 		for(IListItemData d:items) {
+			if(d==null) {
+//				items.remove(d);
+				continue;
+			}
 			files[i++]= new File(d.getPath());
 		}
 	GlobalVars.getMusic().setMusicList(files);
