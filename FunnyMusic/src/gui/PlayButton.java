@@ -42,6 +42,9 @@ public class PlayButton extends JButton{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				if(GlobalVars.getMusic().getCurrentMusic()==null) {
+					return;
+				}
 				if(e.getActionCommand().equals("Play")) {
 					playOrPause();
 				}

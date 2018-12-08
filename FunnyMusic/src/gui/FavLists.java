@@ -132,6 +132,15 @@ public class FavLists extends IList {
 		super.addItem(picpath, text, path, w, h);
 	}
 	
+	public int DelItem() {
+		if((list.getSelectedIndex()<1&& items.size()<2) || getCurrentSheetID()==0 ){
+			System.err.println("You can't delete this favlist! ");
+			return -1;
+		}
+		items.remove(list.getSelectedIndex());
+		return 0;
+	}
+	
 	public int getCurrentSheetID() {
 		GlobalVars.getDBSheets();
 		return DBsheets.getIDByName(((IListItemData)list.getSelectedValue()).getLabelName());

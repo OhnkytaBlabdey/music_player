@@ -142,7 +142,7 @@ public class DBsheets {
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
-		if(id>0) return id;
+		if(id>=0) return id;
 		return -1;
 	}
 	
@@ -208,6 +208,19 @@ public class DBsheets {
 			e.printStackTrace();
 		}
 		
+	}
+	public static void deleteCol(String delname) {
+		// TODO Auto-generated method stub
+		String sql_delete="DELETE FROM sheet WHERE sheet_name like '"+delname+"'";
+		try {
+			Statement stmt_del=conn.createStatement();
+			stmt_del.executeUpdate(sql_delete);
+			
+			conn.commit();
+			stmt_del.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

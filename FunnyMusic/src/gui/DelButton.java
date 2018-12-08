@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import db.DBsheets;
 import other.ConfKit;
 
 public class DelButton extends JButton {
@@ -30,7 +31,15 @@ addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getActionCommand().equals("Del")) {
 					//TODO
-					System.out.println("Delete this favlist! "+((IListItemData)GlobalVars.fav_lists.list.getSelectedValue()).getLabelName());
+					String delname=((IListItemData)GlobalVars.fav_lists.list.getSelectedValue()).getLabelName();
+					
+					// gui
+					if(GlobalVars.fav_lists.DelItem()==0) {
+					// db
+					DBsheets.deleteCol(delname);
+					// console
+					System.out.println("Delete this favlist! "+delname);
+					}
 				}
 			}
 		});
