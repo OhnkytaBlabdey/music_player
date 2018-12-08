@@ -40,7 +40,7 @@ public SongsList() {
 //				System.out.println(e);
 				IListItemData data=(IListItemData) list.getSelectedValue();
 				if(data==null) {
-					list.setSelectedIndex(0);
+//					list.setSelectedIndex(0);
 					setList();
 					//TODO
 					return;
