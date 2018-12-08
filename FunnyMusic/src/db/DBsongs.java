@@ -203,7 +203,7 @@ public class DBsongs {
 	}
 	
 	public static void deleteCol(String song,int sheet_id,String md5,String path) {
-		String sql_delete="DELETE FROM music WHERE song LIKE '"+song+"'";
+		String sql_delete="DELETE FROM music WHERE song LIKE '"+song+"'";// OR path LIKE '"+path+"'";
 		try {
 			Statement stmt_del=conn.createStatement();
 			stmt_del.executeUpdate(sql_delete);

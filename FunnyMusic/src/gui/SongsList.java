@@ -11,15 +11,19 @@ import javax.swing.JPopupMenu;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import db.DBsongs;
 import db.music_info;
 
 public class SongsList extends IList{
+	
+	
 	
 public SongsList() {
 	// TODO Auto-generated constructor stub
 	super();
 	GlobalVars.songs_list=this;
-music_info[] infos = GlobalVars.getDBSongs().queryAll();
+	GlobalVars.getDBSongs();
+	music_info[] infos = DBsongs.queryAll();
 	
 	for(music_info mInfo:infos) {
 			addItem("conf/textures/song.png", mInfo.song, mInfo.path, 30, 30);
@@ -32,17 +36,16 @@ music_info[] infos = GlobalVars.getDBSongs().queryAll();
 		public void valueChanged(ListSelectionEvent e) {
 			// TODO Auto-generated method stub
 
-//			if(isclear) {
-//				return;
-//			}
 			if(!e.getValueIsAdjusting()) {
 //				System.out.println(e);
 				IListItemData data=(IListItemData) list.getSelectedValue();
 				if(data==null) {
 					list.setSelectedIndex(0);
+					setList();
 					//TODO
 					return;
 				}
+				
 				GlobalVars.play_bar.setSong(data.getLabelName());
 				GlobalVars.getMusic().setCurrent(new File(data.getPath()));
 				System.out.println("[songlist] next playing : "+data.getPath());
@@ -86,6 +89,7 @@ music_info[] infos = GlobalVars.getDBSongs().queryAll();
 	JPopupMenu menu=new JPopupMenu();
 	JMenuItem item_add=new JMenuItem("Add Song");
 	JMenuItem item_del=new JMenuItem("Delete Song");
+	
 	Mp3Chooser chooser=new Mp3Chooser();
 	item_add.addActionListener(new ActionListener() {
 		@Override
@@ -95,7 +99,8 @@ music_info[] infos = GlobalVars.getDBSongs().queryAll();
 			File f=chooser.getSelectedFile();
 			if(f!=null) {
 			addItem("", f.getName(), f.getAbsolutePath(), 30, 30);
-			GlobalVars.getDBSongs().insertCol(GlobalVars.fav_lists.getCurrentSheetID(), f.getAbsolutePath());
+			GlobalVars.getDBSongs();
+			DBsongs.insertCol(GlobalVars.fav_lists.getCurrentSheetID(), f.getAbsolutePath());
 			}
 		}
 	});
@@ -105,7 +110,10 @@ music_info[] infos = GlobalVars.getDBSongs().queryAll();
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
+			GlobalVars.getMusic().Stop();
+			System.out.println("[songlist] delete "+GlobalVars.fav_lists.getCurrentSheetID()+" - "+((IListItemData)list.getSelectedValue()).getLabelName());
+			GlobalVars.getDBSongs();
+			DBsongs.deleteCol(((IListItemData)list.getSelectedValue()).getLabelName(), GlobalVars.fav_lists.getCurrentSheetID(), null, ((IListItemData)list.getSelectedValue()).getPath());
 		}
 	});
 	menu.add(item_del);
@@ -129,6 +137,14 @@ music_info[] infos = GlobalVars.getDBSongs().queryAll();
 	addItem("tmp/5.jpg","song3", "music/3.mp3", 20, 20);
 	*/
 }
+	public void setList() {
+		File[] files = new File[items.size()];
+		int i=0;
+		for(IListItemData d:items) {
+			files[i++]= new File(d.getPath());
+		}
+	GlobalVars.getMusic().setMusicList(files);
+	}
 	public void NextSong() {
 		if(list.getLastVisibleIndex()<1) {
 			return;
