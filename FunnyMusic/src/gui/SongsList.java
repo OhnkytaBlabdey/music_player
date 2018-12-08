@@ -112,7 +112,7 @@ public SongsList() {
 		IListItemData data=(IListItemData) list.getSelectedValue();
 		GlobalVars.play_bar.setSong(data.getLabelName());
 		GlobalVars.getMusic().setCurrent(new File(data.getPath()));
-		System.out.println("[songlist] next playing : "+data.getPath());
+		System.out.println("[songlist] to be played : "+data.getPath());
 	}
 }
 

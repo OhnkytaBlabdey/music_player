@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Scanner;
 
+import gui.GlobalVars;
+
 
 //import javazoom.jl.player.advanced.PlaybackListener;
 
@@ -127,7 +129,11 @@ public class MusicManager{
 	public void setCurrent(File f) {
 		current=f;
 		//TODO
+		if(status==PlayerStatus.UNLOADED || status==PlayerStatus.UNSTARTED) {
 		status=PlayerStatus.UNCREATED;
+		}
+		GlobalVars.play_b.setPauseIcon();
+		Change(current);
 
 	}
 	

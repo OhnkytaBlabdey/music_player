@@ -3,6 +3,7 @@ package sound;
 import java.io.IOException;
 
 import gui.GlobalVars;
+import sound.MusicManager.LoopMode;
 
 public class PlayerListener extends Thread {
 
@@ -23,6 +24,10 @@ public class PlayerListener extends Thread {
 					 * GlobalVars.getMusic().Play();
 					 */
 					GlobalVars.getMusic().Play();
+					if(GlobalVars.getMusic().getLoopMode()==LoopMode.LIST) {
+						GlobalVars.songs_list.NextSong();
+					}
+					
 					System.out.println("[Listener]: changing completed");
 					GlobalVars.music_ended.notify();
 //					try {System.in.read();} catch (IOException e) {e.printStackTrace();}
