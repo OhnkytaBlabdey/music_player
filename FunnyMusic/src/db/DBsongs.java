@@ -192,6 +192,38 @@ public class DBsongs {
 		return res;
 	}
 	
+	public static music_info[] querySheet(int SheetId) {
+//		name.replace(' ', '\0');
+		String sql_query="SELECT * FROM music WHERE sheet_id="+SheetId;
+		music_info[] res=new music_info[] {};
+		
+		try {
+			Statement stmt_query=conn.createStatement();
+
+			ResultSet result = stmt_query.executeQuery(sql_query);
+
+			ArrayList<music_info> list = new ArrayList<music_info>();
+
+			while(result.next()) {
+				String song;int sheet_id;String md5;String path;
+				song=result.getString("song");
+				sheet_id=result.getInt("sheet_id");
+				md5=result.getString("md5_val");
+				path=result.getString("dir");
+
+				list.add(new music_info(song,sheet_id,md5,path));
+
+			}
+			
+			res=list.toArray(res);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	
 	public static String[] getSongs() {
 		music_info[] songs=queryAll();
 		ArrayList<String> list= new ArrayList<String>();

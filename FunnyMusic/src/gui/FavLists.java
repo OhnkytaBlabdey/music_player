@@ -33,7 +33,7 @@ public class FavLists extends IList {
 //			addItem(info.path, info.user+"\t-\t"+info.name, null, 30, 30);
 			addItem(info.path, info.name, null, 30, 40);
 		}
-		list.setSelectedIndex(0);
+//		list.setSelectedIndex(0);
 		
 		list.addListSelectionListener(new ListSelectionListener() {
 			@Override
@@ -65,6 +65,7 @@ public class FavLists extends IList {
 				}
 			}
 		});
+		list.setSelectedIndex(0);
 		
 		JPanel panel=new JPanel();
 //		panel.setLayout(new GridLayout(1, 2));

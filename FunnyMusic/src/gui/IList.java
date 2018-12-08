@@ -45,6 +45,7 @@ public class IList extends JPanel{
 		list.setCellRenderer(new IListCellRender());
 		items = new Vector<IListItemData>();
 		list.setListData(items);
+		list.setVisibleRowCount(6);
 		list.setSelectedIndex(0);
 		
 		listScro = new JScrollPane(list);

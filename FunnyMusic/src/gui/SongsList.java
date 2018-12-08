@@ -23,7 +23,7 @@ public SongsList() {
 	super();
 	GlobalVars.songs_list=this;
 	GlobalVars.getDBSongs();
-	music_info[] infos = DBsongs.queryAll();
+	music_info[] infos = DBsongs.querySheet(0);
 	
 	for(music_info mInfo:infos) {
 			addItem("conf/textures/song.png", mInfo.song, mInfo.path, 30, 30);
