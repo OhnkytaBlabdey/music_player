@@ -45,6 +45,12 @@ public class FavLists extends IList {
 					
 					IListItemData data=(IListItemData) list.getSelectedValue();
 					GlobalVars.getDBSongs();
+					
+					if(data==null) {
+						
+						return;
+					}
+					
 					music_info[] infos = DBsongs.querySheet(data.getLabelName());
 					
 					for(music_info mInfo:infos) {

@@ -11,6 +11,7 @@ public class Mp3Chooser extends JFileChooser {
 
 	public Mp3Chooser() {
 		// TODO Auto-generated constructor stub
+		setCurrentDirectory(new File("."));
 		addChoosableFileFilter(new FileFilter() {
 			
 			@Override
@@ -27,7 +28,7 @@ public class Mp3Chooser extends JFileChooser {
 				
 			}
 		});
-addActionListener(new ActionListener() {
+		addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {

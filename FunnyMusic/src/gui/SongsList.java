@@ -51,7 +51,7 @@ public SongsList() {
 //					items.remove(data);
 //					Clear();
 					if(items.size()>1) {
-						// change to new 
+						// change to new favlist
 					setList();
 					list.setValueIsAdjusting(true);
 					}
@@ -157,6 +157,10 @@ public SongsList() {
 //				items.remove(d);
 				continue;
 			}
+//			if(d.getPath()==null) {
+//				// ??
+//				continue;
+//			}
 			files[i++]= new File(d.getPath());
 		}
 	GlobalVars.getMusic().setMusicList(files);

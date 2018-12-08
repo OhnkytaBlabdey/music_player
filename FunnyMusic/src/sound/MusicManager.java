@@ -247,6 +247,10 @@ public class MusicManager{
 		mode=loopMode;
 	}
 	public void setMusicList(File[] files) {
+		if(files.length<1) {
+
+			return;
+		}
 		musics=files;
 		current=files[0];
 		System.out.println("[Music]: setMusicList, first file is "+current.getAbsolutePath());

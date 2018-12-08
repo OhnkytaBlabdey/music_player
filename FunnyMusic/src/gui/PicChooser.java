@@ -10,6 +10,7 @@ import javax.swing.filechooser.FileFilter;
 public class PicChooser extends JFileChooser {
 	public PicChooser() {
 		// TODO Auto-generated constructor stub
+		setCurrentDirectory(new File("."));
 		addChoosableFileFilter(new FileFilter() {
 			
 			@Override
