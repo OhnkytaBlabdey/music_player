@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +14,10 @@ import other.ConfKit;
 
 public class MaxBar extends JButton {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	static private String default_src="conf/textures/maximize_b.png";
 	static private String default_src2="conf/textures/restore_b.png";
 	private boolean ismaxed;

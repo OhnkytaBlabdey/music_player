@@ -12,6 +12,11 @@ import javax.swing.border.LineBorder;
 
 public class PlayBar extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
@@ -54,6 +59,11 @@ public class PlayBar extends JPanel {
 }
 
 class Group extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Group() {
 		setLayout(new GridLayout(1, 4));
 		add(new StopButton());

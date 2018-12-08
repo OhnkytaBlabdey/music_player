@@ -18,6 +18,10 @@ public class SongsList extends IList{
 	
 	
 	
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 public SongsList() {
 	// TODO Auto-generated constructor stub
 	super();

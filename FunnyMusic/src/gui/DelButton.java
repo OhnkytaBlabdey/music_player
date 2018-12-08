@@ -14,6 +14,10 @@ import other.ConfKit;
 
 public class DelButton extends JButton {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	static private String default_src="conf/textures/del_b.png";
 	public DelButton() {
 		ImageIcon icon = new ImageIcon(default_src);

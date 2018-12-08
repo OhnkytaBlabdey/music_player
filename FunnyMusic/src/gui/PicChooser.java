@@ -8,6 +8,11 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 
 public class PicChooser extends JFileChooser {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public PicChooser() {
 		// TODO Auto-generated constructor stub
 		setCurrentDirectory(new File("."));

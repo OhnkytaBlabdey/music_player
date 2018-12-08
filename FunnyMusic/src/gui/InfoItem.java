@@ -32,6 +32,10 @@ public class InfoItem extends JLabel {
 //		frame.setVisible(true);
 //	}
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ImageIcon album;
 //	JLabel text1;
 	String song;

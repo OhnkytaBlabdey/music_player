@@ -1,8 +1,6 @@
 package sound;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Scanner;
 
 import gui.GlobalVars;
@@ -211,6 +209,7 @@ public class MusicManager{
 			System.err.println("[Music]: current status is "+status+" cannot START.");
 		}
 	}
+	@SuppressWarnings("deprecation")
 	public void Pause() {
 		if(status==PlayerStatus.PLAYING) {
 			player.suspend();
@@ -219,6 +218,7 @@ public class MusicManager{
 			System.err.println("[Music]: current status is "+status+" cannot PAUSE.");
 		}
 	}
+	@SuppressWarnings("deprecation")
 	public void Resume() {
 		if(status==PlayerStatus.PAUSED) {
 			player.resume();
@@ -227,6 +227,7 @@ public class MusicManager{
 			System.err.println("[Music]: current status is "+status+" cannot RESUME.");
 		}
 	}
+	@SuppressWarnings("deprecation")
 	public void Stop() {
 		if(status==PlayerStatus.PLAYING || status == PlayerStatus.PAUSED) {
 //			player.interrupt();

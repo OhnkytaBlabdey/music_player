@@ -1,7 +1,5 @@
 package gui;
 
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.io.File;
 
@@ -13,7 +11,6 @@ import db.DBsheets;
 import db.DBsongs;
 import db.music_info;
 import db.sheet_info;
-import other.ConfKit;
 
 public class FavLists extends IList {
 	/**

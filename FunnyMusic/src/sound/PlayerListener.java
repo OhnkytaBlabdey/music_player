@@ -1,7 +1,5 @@
 package sound;
 
-import java.io.IOException;
-
 import gui.GlobalVars;
 import sound.MusicManager.LoopMode;
 

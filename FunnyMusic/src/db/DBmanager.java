@@ -47,6 +47,7 @@ public class DBmanager {
 		
 	}
 	
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 	Connection conn = null;
 	Statement stmt = null;

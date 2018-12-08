@@ -8,7 +8,6 @@ import javax.swing.JFrame;
 
 import db.DBsheets;
 import db.DBsongs;
-import db.music_info;
 import sound.MusicManager;
 
 public abstract class GlobalVars {
@@ -41,7 +40,8 @@ public abstract class GlobalVars {
 		}
 	public static MusicManager getMusic() {
 		if(manager==null) {
-			manager=new MusicManager(getDBSongs().getSongs());
+			getDBSongs();
+			manager=new MusicManager(DBsongs.getSongs());
 		}
 		return manager;
 	}
@@ -72,7 +72,7 @@ public abstract class GlobalVars {
 	public static DBsheets getDBSheets() {
 		if(dbSheets==null) {
 			dbSheets=new DBsheets();
-			dbSheets.init();
+			DBsheets.init();
 		}
 		return dbSheets;
 	}

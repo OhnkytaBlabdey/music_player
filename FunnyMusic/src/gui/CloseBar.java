@@ -13,6 +13,10 @@ import other.ConfKit;
 
 public class CloseBar extends JButton {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	static private String default_src="conf/textures/close_b.png";
 	public CloseBar() {
 		// TODO Auto-generated constructor stub

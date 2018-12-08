@@ -1,35 +1,26 @@
 package gui;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
-
-import javax.swing.JFrame;
-
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
 import javax.swing.UIManager;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-
-import db.music_info;
-import other.MP3Info;
 
 
 public class IList extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 
+	@SuppressWarnings("rawtypes")
 	protected JList list;
 	protected JScrollPane listScro;
 	protected Vector<IListItemData> items ;
 
 //	protected boolean isclear=false;
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public IList(){
 
 		try {
@@ -58,6 +49,7 @@ public class IList extends JPanel{
 
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void addItem(String picpath,String text,String path,int w,int h) {
 		if(picpath.equals("")) {
 			picpath="conf/textures/song.png";
@@ -70,6 +62,7 @@ public class IList extends JPanel{
 
 	
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void init(){
 
 		list = new JList();

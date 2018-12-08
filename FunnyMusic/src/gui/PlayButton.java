@@ -13,6 +13,10 @@ import javax.swing.JButton;
 
 public class PlayButton extends JButton{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	static private String default_src="conf/textures/play_b.png";
 	static private String default_src2="conf/textures/pause_b.png";
 //	static private boolean playing;

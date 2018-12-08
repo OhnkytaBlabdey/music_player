@@ -142,6 +142,7 @@ public class BasicPlayerTest implements BasicPlayerListener
 	 * @param stream could be File, URL or InputStream
 	 * @param properties audio stream properties.
 	 */
+	@SuppressWarnings("rawtypes")
 	public void opened(Object stream, Map properties)
 	{
 		// Pay attention to properties. It's useful to get duration, 
@@ -161,6 +162,7 @@ public class BasicPlayerTest implements BasicPlayerListener
 	 * @param pcmdata PCM samples.
 	 * @param properties audio stream parameters.
 	 */
+	@SuppressWarnings("rawtypes")
 	public void progress(int bytesread, long microseconds, byte[] pcmdata, Map properties)
 	{
 		// Pay attention to properties. It depends on underlying JavaSound SPI

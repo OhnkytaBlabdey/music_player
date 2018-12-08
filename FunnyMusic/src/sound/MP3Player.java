@@ -10,10 +10,10 @@ import java.util.Scanner;
 import gui.GlobalVars;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
-import javazoom.jl.player.advanced.jlap;
 
 public class MP3Player extends Thread implements sound.Player {
 
+	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
@@ -56,6 +56,7 @@ public class MP3Player extends Thread implements sound.Player {
 	}
 	
 	
+	@SuppressWarnings("unused")
 	private String filename;
 	private boolean isplaying;
 	private boolean used=false;
@@ -63,6 +64,7 @@ public class MP3Player extends Thread implements sound.Player {
 	
 	private Player player;
 	private File file;
+	@SuppressWarnings("unused")
 	private CallBacker callBacker;
 	
 	BufferedInputStream buffer;
@@ -106,6 +108,7 @@ public class MP3Player extends Thread implements sound.Player {
 		return player;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void pauseOrContinue() {
 		if(isplaying) {
 			isplaying=false;
@@ -164,6 +167,7 @@ public class MP3Player extends Thread implements sound.Player {
 		this.start();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void Pause() {
 		if(this.isplaying)
@@ -171,12 +175,14 @@ public class MP3Player extends Thread implements sound.Player {
 		isplaying=false;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void Resume() {
 		isplaying=true;
 		this.resume();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void Stop() {
 //		shouldLoop=false;

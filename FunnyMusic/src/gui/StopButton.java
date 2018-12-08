@@ -13,6 +13,10 @@ import javax.swing.JButton;
 
 public class StopButton extends JButton{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	static private String default_src="conf/textures/stop_b.png";
 	public StopButton() {
 		// TODO Auto-generated constructor stub

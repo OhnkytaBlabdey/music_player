@@ -12,11 +12,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import db.DBsheets;
-import db.DBsongs;
 import other.ConfKit;
 
 public class AddButton extends JButton{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	static private String default_src="conf/textures/add_b.png";
 	public AddButton() {
 		ImageIcon icon = new ImageIcon(default_src);
@@ -30,7 +33,7 @@ public class AddButton extends JButton{
 		setActionCommand("Add");
 		
 		PicChooser chooser = new PicChooser();
-		TextInputBar inputBar=new TextInputBar();
+//		TextInputBar inputBar=new TextInputBar();
 		
 		addActionListener(new ActionListener() {
 			
@@ -47,12 +50,12 @@ public class AddButton extends JButton{
 					String name=null;
 					while (name==null) {
 						//TODO : input user name and favlist name
-						name=inputBar.showInputDialog(GlobalVars.getFrame(), "INPUT FAVLIST's NAME! ");
+						name=TextInputBar.showInputDialog(GlobalVars.getFrame(), "INPUT FAVLIST's NAME! ");
 						// input filter
 						name=name.replace('#', '_').replace('*', '_').replace('\'', '_').replace('"', '_').replace(';', '_').replace('(', '_').replace(')', '_');
 					}
 					
-					String user=inputBar.showInputDialog(GlobalVars.getFrame(), "INPUT your NAME! ");;
+					String user=TextInputBar.showInputDialog(GlobalVars.getFrame(), "INPUT your NAME! ");;
 					//TODO : input user name and favlist name
 					if (user==null) {
 						user=(String)System.getenv("USERNAME");

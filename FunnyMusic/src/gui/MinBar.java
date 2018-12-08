@@ -14,6 +14,10 @@ import other.ConfKit;
 
 public class MinBar extends JButton {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	static private String default_src="conf/textures/minimize_b.png";
 	public MinBar() {
 		// TODO Auto-generated constructor stub

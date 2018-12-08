@@ -12,6 +12,10 @@ import javax.swing.JButton;
 import other.ConfKit;
 
 public class NextButton extends JButton {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	static private String default_src="conf/textures/next_b.png";
 	public NextButton() {
 		// TODO Auto-generated constructor stub

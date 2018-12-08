@@ -10,6 +10,10 @@ import javax.swing.JLabel;
 import other.ConfKit;
 
 public class TitleLogo extends JLabel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	static private String default_src="conf/textures/logo.png";
 	public TitleLogo() {
 		// TODO Auto-generated constructor stub

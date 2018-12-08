@@ -15,6 +15,7 @@ import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 
 
+@SuppressWarnings("rawtypes")
 public class IListCellRender extends JLabel implements ListCellRenderer{
 	
 	private static final long serialVersionUID = 1L;

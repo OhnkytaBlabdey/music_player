@@ -9,6 +9,11 @@ import javax.swing.filechooser.FileFilter;
 
 public class Mp3Chooser extends JFileChooser {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Mp3Chooser() {
 		// TODO Auto-generated constructor stub
 		setCurrentDirectory(new File("."));
