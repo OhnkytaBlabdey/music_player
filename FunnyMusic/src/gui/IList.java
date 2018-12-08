@@ -28,6 +28,8 @@ public class IList extends JPanel{
 	protected JScrollPane listScro;
 	protected Vector<IListItemData> items ;
 
+//	protected boolean isclear=false;
+	
 	public IList(){
 
 		try {
@@ -43,6 +45,7 @@ public class IList extends JPanel{
 		list.setCellRenderer(new IListCellRender());
 		items = new Vector<IListItemData>();
 		list.setListData(items);
+		list.setSelectedIndex(0);
 		
 		listScro = new JScrollPane(list);
 		listScro.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -101,6 +104,16 @@ public class IList extends JPanel{
 
 //	}
 
+	public void Clear() {
+//		isclear=true;
+		for(IListItemData data:items) {
+			System.out.println(data+"going to be cleared.");
+			data=null;
+			
+		}
+		items.clear();
+//		isclear=false;
+	}
 	
 
 	public static void main(String[] args) {

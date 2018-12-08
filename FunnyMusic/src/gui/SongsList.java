@@ -14,10 +14,17 @@ import javax.swing.event.ListSelectionListener;
 import db.music_info;
 
 public class SongsList extends IList{
+	
 public SongsList() {
 	// TODO Auto-generated constructor stub
 	super();
 	GlobalVars.songs_list=this;
+music_info[] infos = GlobalVars.getDBSongs().queryAll();
+	
+	for(music_info mInfo:infos) {
+			addItem("conf/textures/song.png", mInfo.song, mInfo.path, 30, 30);
+	}
+	list.setSelectedIndex(0);
 	
 	list.addListSelectionListener(new ListSelectionListener() {
 		
@@ -25,14 +32,22 @@ public SongsList() {
 		public void valueChanged(ListSelectionEvent e) {
 			// TODO Auto-generated method stub
 
-			if(e.getValueIsAdjusting()) {
+//			if(isclear) {
+//				return;
+//			}
+			if(!e.getValueIsAdjusting()) {
 //				System.out.println(e);
 				IListItemData data=(IListItemData) list.getSelectedValue();
+				if(data==null) {
+					list.setSelectedIndex(0);
+					//TODO
+					return;
+				}
 				GlobalVars.play_bar.setSong(data.getLabelName());
 				GlobalVars.getMusic().setCurrent(new File(data.getPath()));
 				System.out.println("[songlist] next playing : "+data.getPath());
 				
-				
+				/*
 //			if(!GlobalVars.music_inited && !GlobalVars.music_playing) {
 //				IListItemData data=(IListItemData) list.getSelectedValue();
 //			GlobalVars.getMusic().Stop();
@@ -63,12 +78,14 @@ public SongsList() {
 //					GlobalVars.play_bar.setSong(data.getLabelName());
 //					GlobalVars.play_b.playOrPause();
 //				}
+ * */
 			}
 		}
 	});
 	
 	JPopupMenu menu=new JPopupMenu();
 	JMenuItem item_add=new JMenuItem("Add Song");
+	JMenuItem item_del=new JMenuItem("Delete Song");
 	Mp3Chooser chooser=new Mp3Chooser();
 	item_add.addActionListener(new ActionListener() {
 		@Override
@@ -78,11 +95,20 @@ public SongsList() {
 			File f=chooser.getSelectedFile();
 			if(f!=null) {
 			addItem("", f.getName(), f.getAbsolutePath(), 30, 30);
-//			GlobalVars.getDBSongs().insertCol(0, f.getAbsolutePath());
+			GlobalVars.getDBSongs().insertCol(GlobalVars.fav_lists.getCurrentSheetID(), f.getAbsolutePath());
 			}
 		}
 	});
 	menu.add(item_add);
+	
+	item_del.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	});
+	menu.add(item_del);
 	
 	list.addMouseListener(new MouseAdapter() {
 		@Override
@@ -94,11 +120,7 @@ public SongsList() {
 	});
 //	add(menu);
 	
-	music_info[] infos = GlobalVars.getDBSongs().queryAll();
 	
-	for(music_info mInfo:infos) {
-			addItem("conf/textures/song.png", mInfo.song, mInfo.path, 30, 30);
-	}
 	/*
 	addItem("tmp/5.jpg","song3", "music/3.mp3", 20, 20);
 	addItem("tmp/5.jpg","song3", "music/3.mp3", 20, 20);
@@ -108,11 +130,16 @@ public SongsList() {
 	*/
 }
 	public void NextSong() {
+		if(list.getLastVisibleIndex()<1) {
+			return;
+		}
 		list.setSelectedIndex((list.getSelectedIndex()+1)%(list.getLastVisibleIndex()+1));
 		IListItemData data=(IListItemData) list.getSelectedValue();
 		GlobalVars.play_bar.setSong(data.getLabelName());
 		GlobalVars.getMusic().setCurrent(new File(data.getPath()));
 		System.out.println("[songlist] to be played : "+data.getPath());
 	}
+	
+
 }
 

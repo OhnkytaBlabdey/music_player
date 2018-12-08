@@ -1,5 +1,9 @@
 package gui;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 import javax.swing.JFrame;
 
 import db.DBsheets;
@@ -13,6 +17,7 @@ public abstract class GlobalVars {
 	public static MusicManager manager;
 	public static DBsongs dbSongs;
 	public static DBsheets dbSheets;
+	public static Connection connection;
 	public static int x,y;
 	
 	
@@ -20,6 +25,7 @@ public abstract class GlobalVars {
 	public static PlayButton play_b;
 	public static PlayBar play_bar;
 	public static SongsList songs_list;
+	public static FavLists fav_lists;
 	/*
 	 * music playing status
 	 * */
@@ -38,6 +44,23 @@ public abstract class GlobalVars {
 			manager=new MusicManager(getDBSongs().getSongs());
 		}
 		return manager;
+	}
+	public static Connection getConnection() {
+		if(connection==null) {
+			
+			try {
+				Class.forName("org.sqlite.JDBC");
+				connection = DriverManager.getConnection("jdbc:sqlite:"+DBsheets.dbpath);
+				connection.setAutoCommit(false);
+				System.out.println("Opened database successfully");
+			} catch (SQLException | ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			
+			
+			
+		}
+		return connection;
 	}
 	public static DBsongs getDBSongs() {
 		if(dbSongs==null) {

@@ -44,6 +44,9 @@ public class PlayBar extends JPanel {
 		setBorder(new LineBorder(Color.CYAN));
 	}
 	public void setSong(String name) {
+		if(name==null) {
+			this.name.setText("None");
+		}
 		this.name.setText(name);
 	}
 	

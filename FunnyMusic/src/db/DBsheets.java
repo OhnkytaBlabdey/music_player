@@ -10,6 +10,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 
+import gui.GlobalVars;
+
 public class DBsheets {
 	public static String dbpath="./db/user.db";
 	public static Connection conn;
@@ -83,18 +85,19 @@ public class DBsheets {
 	}
 	
 	public static void init() {
-		  try {
+//		  try {
 			  dbExists();
 			  
-			Class.forName("org.sqlite.JDBC");
-			conn = DriverManager.getConnection("jdbc:sqlite:"+dbpath);
-			conn.setAutoCommit(false);
-			System.out.println("Opened database successfully");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+//			Class.forName("org.sqlite.JDBC");
+//			conn = DriverManager.getConnection("jdbc:sqlite:"+dbpath);
+//			conn.setAutoCommit(false);
+//			System.out.println("Opened database successfully");
+			  conn=GlobalVars.getConnection();
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
 		  if(!tableExists("sheet")) createTable();
 		  if(getNameByID(0)==null) {
 			  insertCol(0,"MyFavlist", new Date().toString(), System.getenv().get("USERNAME"), "./conf/textures/song.png");

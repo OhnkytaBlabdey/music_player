@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Random;
 
+import gui.GlobalVars;
 import other.hashMD5;
 
 public class DBsongs {
@@ -92,18 +93,19 @@ public class DBsongs {
 	}
 	
 	public static void init() {
-		  try {
+//		  try {
 			  dbExists();
 			  
-			Class.forName("org.sqlite.JDBC");
-			conn = DriverManager.getConnection("jdbc:sqlite:"+dbpath);
-			conn.setAutoCommit(false);
-			System.out.println("Opened database successfully");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+//			Class.forName("org.sqlite.JDBC");
+//			conn = DriverManager.getConnection("jdbc:sqlite:"+dbpath);
+//			conn.setAutoCommit(false);
+//			System.out.println("Opened database successfully");
+			  conn=GlobalVars.getConnection();
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
 		  if(!tableExists("music")) createTable();
 	}
 	public static void insertCol(String song,int sheet_id,String md5,String path) {

@@ -21,6 +21,7 @@ public class IListCellRender extends JLabel implements ListCellRenderer{
 
 	private boolean m_selected = false;
 
+	@Override
 	public Component getListCellRendererComponent(JList list, Object value,
 
 			int index, boolean isSelected, boolean cellHasFocus) {
@@ -55,6 +56,7 @@ public class IListCellRender extends JLabel implements ListCellRenderer{
 
 	}
 
+	@Override
 	public void paintComponent(Graphics g) {
 
 		Color bColor = getBackground();
