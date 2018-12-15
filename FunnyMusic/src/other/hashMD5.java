@@ -57,10 +57,11 @@ public class hashMD5 {
 		
 		public static String encodeFile(String path) {
 			File file=new File(path);
-			byte[] buf = null;
+			byte[] buf = new byte[0x40000];
 			try {
 			FileInputStream input = new FileInputStream(file);
-			buf=input.readAllBytes();
+//			buf=input.readAllBytes();
+			input.read(buf);
 			input.close();
 			} catch (IOException e) {
 				e.printStackTrace();
